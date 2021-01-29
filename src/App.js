@@ -1,59 +1,57 @@
-import './App.css';
-
 function App() {
   return (
     <>
-      <div classNameName="container root__container">   
-        <header classNameName="header container__header">
-          <img classNameName="header__logo" src="<%=require('./resources/images/svgs/logo.svg')%>" alt="Логотип Mesto" />
+      <div className="container root__container">   
+        <header className="header container__header">
+          <img className="header__logo" src="<%=require('./resources/images/svgs/logo.svg')%>" alt="Логотип Mesto" />
         </header>
-        <main classNameName="main container__main">
-          <section classNameName="profile main__profile">
-            <div classNameName="profile__main">
-              <img classNameName="profile__avatar" src="<%=require('./resources/images/jaque.png')%>" alt="Портрет пользователя" />
-              <button classNameName="profile__avatar-button"></button>
-              <div classNameName="profile__text-info">
-                <h1 classNameName="profile__name">Жак-Ив Кусто</h1>
-                <button classNameName="profile__edit" type="button"></button>
-                <p classNameName="profile__description">Исследователь океана</p>
+        <main className="main container__main">
+          <section className="profile main__profile">
+            <div className="profile__main">
+              <img className="profile__avatar" src="<%=require('./resources/images/jaque.png')%>" alt="Портрет пользователя" />
+              <button className="profile__avatar-button"></button>
+              <div className="profile__text-info">
+                <h1 className="profile__name">Жак-Ив Кусто</h1>
+                <button className="profile__edit" type="button"></button>
+                <p className="profile__description">Исследователь океана</p>
               </div>
             </div>
-            <button classNameName="profile__add" type="button"></button>
+            <button className="profile__add" type="button"></button>
           </section>
-          <section classNameName="cards main__cards">
+          <section className="cards main__cards">
           </section>
         </main>
-        <footer classNameName="footer container__footer">
-          <p classNameName="footer__text">&COPY; 2020 Mesto Russia</p>
+        <footer className="footer container__footer">
+          <p className="footer__text">&COPY; 2020 Mesto Russia</p>
         </footer>
       </div>
       <div className="popup popup-profile root__popup">
-        <form className="popup__container" name="profile" novalidate>
+        <form className="popup__container" name="profile" noValidate>
           <button className="popup__close" type="button"></button>
           <h2 className="popup__heading">Редактировать профиль</h2>
-          <input className="popup__input popup__input_name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" autocomplete="off" required />
+          <input className="popup__input popup__input_name" name="name" type="text" placeholder="Имя" minLength="2" maxLength="40" autoComplete="off" required />
           <span className="popup__error"></span>
-          <input className="popup__input popup__input_description" name="description" type="text" placeholder="Описание" minlength="2" maxlength="200" autocomplete="off" required />
+          <input className="popup__input popup__input_description" name="description" type="text" placeholder="Описание" minLength="2" maxLength="200" autoComplete="off" required />
           <span className="popup__error"></span>
           <button className="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
       <div className="popup popup-avatar root__popup">
-        <form className="popup__container" name="avatar-form" novalidate>
+        <form className="popup__container" name="avatar-form" noValidate>
           <button className="popup__close" type="button"></button>
           <h2 className="popup__heading">Обновить аватар</h2>
-          <input className="popup__input popup__input_avatar" name="avatar" type="url" placeholder="Ссылка на фото" autocomplete="off" required />
+          <input className="popup__input popup__input_avatar" name="avatar" type="url" placeholder="Ссылка на фото" autoComplete="off" required />
           <span className="popup__error"></span>
           <button className="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
       <div className="popup popup-card root__popup">
-        <form className="popup__container" name="card" novalidate>
+        <form className="popup__container" name="card" noValidate>
           <button className="popup__close" type="button"></button>
           <h2 className="popup__heading">Новое место</h2>
-          <input className="popup__input popup__input_card-name" name="place" type="text" placeholder="Название" minlength="2" maxlength="30" autocomplete="off" required />
+          <input className="popup__input popup__input_card-name" name="place" type="text" placeholder="Название" minLength="2" maxLength="30" autoComplete="off" required />
           <span className="popup__error"></span>
-          <input className="popup__input popup__input_card-link" name="link" type="url" placeholder="Ссылка на картинку" autocomplete="off" required />
+          <input className="popup__input popup__input_card-link" name="link" type="url" placeholder="Ссылка на картинку" autoComplete="off" required />
           <span className="popup__error"></span>
           <button className="popup__button" type="submit">Создать</button>
         </form>
