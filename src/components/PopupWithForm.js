@@ -1,4 +1,4 @@
-function popupWithForm (props) {
+function PopupWithForm (props) {
   let button;
   if (props.name === 'delete') {
     button = <button className="popup__button" type="submit">Удалить</button>;
@@ -18,4 +18,4 @@ function popupWithForm (props) {
   );
 }
 
-export default popupWithForm;
+export default PopupWithForm;
