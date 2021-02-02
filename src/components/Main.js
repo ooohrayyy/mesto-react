@@ -8,6 +8,8 @@ function Main (props) {
   const [userDescription, setUserDescription] = React.useState('Исследователь океана');
   const [userAvatar, setUserAvatar] = React.useState(jaque);
 
+  const [cards, setCards] = React.useState([]);
+
   React.useEffect(() => {
     api.fetchUserInfo()
       .then(res => {
@@ -17,6 +19,11 @@ function Main (props) {
       })
       .catch(err => {
         console.log(`Что-то пошло не так: ${err}`);
+      });
+
+    api.fetchInitialCards()
+      .then(res => {
+        setCards(res);
       });
   });
 
@@ -35,6 +42,19 @@ function Main (props) {
         <button className="profile__add" type="button" onClick={props.onAddPlace}></button>
       </section>
       <section className="cards main__cards">
+        {cards.map((item, i) => (
+        <article className="card" key={i}>
+          <button className="card__open-fullpic" type="button">
+            <img className="card__image" src={item.link} alt={item.alt} />
+          </button>
+          <div className="card__label">
+            <h2 className="card__name">{item.name}</h2>
+            <button className="card__like" type="button">
+              <p className="card__counter">{item.likes.length}</p>
+            </button>
+          </div>
+        </article>
+        ))}
       </section>
     </main>
   );
