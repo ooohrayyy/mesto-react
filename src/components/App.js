@@ -2,6 +2,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from "./PopupWithForm.js";
+import ImagePopup from "./ImagePopup.js";
 
 function App () {
   return (
@@ -28,13 +29,7 @@ function App () {
         <span className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm name="delete" heading="Вы уверены?" />
-      <div className="popup popup-fullpic root__popup">
-        <figure className="popup__figure">
-          <button className="popup__close popup__close_fullpic" type="button"></button>
-          <img className="popup__fullpic" src="https://example.com/" alt="Полноразмерное изображение" />
-          <figcaption className="popup__caption"></figcaption>
-        </figure>
-      </div>
+      <ImagePopup />
       <template id="template-card">
         <article className="card">
           <button className="card__open-fullpic" type="button">
