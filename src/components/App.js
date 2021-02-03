@@ -9,6 +9,9 @@ function App () {
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
   const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
+  const [isImagePopupOpen, setImagePopup] = React.useState(false);
+
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick () {
     setAvatarPopup(true);
@@ -22,10 +25,18 @@ function App () {
     setAddPlacePopup(true);
   }
 
+  function handleCardClick () {
+    setSelectedCard(this.item);
+    setImagePopup(true);
+  }
+
   function closeAllPopups () {
     setAvatarPopup(false);
     setProfilePopup(false);
     setAddPlacePopup(false);
+    setImagePopup(false);
+
+    setSelectedCard(null);
   }
 
   return (
@@ -36,6 +47,7 @@ function App () {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
       </div>
@@ -56,20 +68,7 @@ function App () {
         <span className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm name="delete" heading="Вы уверены?" onClose={closeAllPopups} />
-      <ImagePopup />
-      <template id="template-card">
-        <article className="card">
-          <button className="card__open-fullpic" type="button">
-            <img className="card__image" src="https://example.com/" alt="Фотография в карточке" />
-          </button>
-          <div className="card__label">
-            <h2 className="card__name"></h2>
-            <button className="card__like" type="button">
-              <p className="card__counter">0</p>
-            </button>
-          </div>
-        </article>
-      </template>
+      <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </>
   );
 }

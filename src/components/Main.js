@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../utils/Api.js';
+import Card from './Card.js';
 
 import jaque from '../resources/images/jaque.png';
 
@@ -43,17 +44,7 @@ function Main (props) {
       </section>
       <section className="cards main__cards">
         {cards.map((item, i) => (
-        <article className="card" key={i}>
-          <button className="card__open-fullpic" type="button">
-            <img className="card__image" src={item.link} alt={item.alt} />
-          </button>
-          <div className="card__label">
-            <h2 className="card__name">{item.name}</h2>
-            <button className="card__like" type="button">
-              <p className="card__counter">{item.likes.length}</p>
-            </button>
-          </div>
-        </article>
+          <Card item={item} key={i} onCardClick={props.onCardClick} />
         ))}
       </section>
     </main>
