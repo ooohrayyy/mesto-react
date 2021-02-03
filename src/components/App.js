@@ -1,3 +1,5 @@
+// ! Привет команде код-ревью! Сначало было страшно, но чем дальше — тем приятнее React
+
 import React from 'react';
 import Header from './Header.js';
 import Main from './Main.js';
