@@ -26,7 +26,7 @@ function Main (props) {
       .then(res => {
         setCards(res);
       });
-  });
+  }, []);
 
   return (
     <main className="main container__main">
