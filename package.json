@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Интерактивная страница, на которой можно добавлять фотографии, удалять их и ставить лайки",
   "private": true,
+  "homepage": "https://ooohrayyy.github.io/mesto-react",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -22,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+http://github.com/ooohrayyy/mesto-react.git"
+    "url": "git+https://github.com/ooohrayyy/mesto-react.git"
   },
   "author": "Boris Nikitashov",
   "bugs": {
