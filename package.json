@@ -1,6 +1,7 @@
 {
   "name": "mesto-react",
   "version": "0.1.0",
+  "description": "Интерактивная страница, на которой можно добавлять фотографии, удалять их и ставить лайки",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -19,6 +20,15 @@
     "predeploy": "react-scripts build",
     "deploy": "gh-pages -d build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+http://github.com/ooohrayyy/mesto-react.git"
+  },
+  "author": "Boris Nikitashov",
+  "bugs": {
+    "url": "https://github.com/ooohrayyy/mesto-react/issues"
+  },
+  "homepage": "https://github.com/ooohrayyy/mesto-react#readme",
   "eslintConfig": {
     "extends": [
       "react-app",
