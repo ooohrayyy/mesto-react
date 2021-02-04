@@ -7,7 +7,7 @@ function PopupWithForm (props) {
           {props.children}
           <button className="popup__button" type="submit">
             {(props.name === 'delete') ? 'Удалить' : 'Сохранить'}
-          </button>;
+          </button>
         </form>
     </div>
   );
