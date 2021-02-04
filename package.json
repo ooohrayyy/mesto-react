@@ -28,7 +28,6 @@
   "bugs": {
     "url": "https://github.com/ooohrayyy/mesto-react/issues"
   },
-  "homepage": "https://github.com/ooohrayyy/mesto-react#readme",
   "eslintConfig": {
     "extends": [
       "react-app",
