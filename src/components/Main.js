@@ -33,14 +33,14 @@ function Main (props) {
       <section className="profile main__profile">
         <div className="profile__main">
           <img className="profile__avatar" src={userAvatar} alt="Портрет пользователя" />
-          <button className="profile__avatar-button" onClick={props.onEditAvatar}></button>
+          <button className="profile__avatar-button" onClick={props.onEditAvatar} />
           <div className="profile__text-info">
             <h1 className="profile__name">{userName}</h1>
-            <button className="profile__edit" type="button" onClick={props.onEditProfile}></button>
+            <button className="profile__edit" type="button" onClick={props.onEditProfile} />
             <p className="profile__description">{userDescription}</p>
           </div>
         </div>
-        <button className="profile__add" type="button" onClick={props.onAddPlace}></button>
+        <button className="profile__add" type="button" onClick={props.onAddPlace} />
       </section>
       <section className="cards main__cards">
         {cards.map((item) => (
