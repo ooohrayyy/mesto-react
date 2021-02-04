@@ -52,19 +52,56 @@ function App () {
         <Footer />
       </div>
       <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-        <input className="popup__input popup__input_name" name="name" type="text" placeholder="Имя" minLength="2" maxLength="40" autoComplete="off" required />
+        <input
+          className="popup__input popup__input_name"
+          name="name"
+          type="text"
+          placeholder="Имя"
+          minLength="2" maxLength="40"
+          autoComplete="off"
+          required
+        />
         <span className="popup__error"></span>
-        <input className="popup__input popup__input_description" name="description" type="text" placeholder="Описание" minLength="2" maxLength="200" autoComplete="off" required />
+        <input
+          className="popup__input popup__input_description"
+          name="description"
+          type="text"
+          placeholder="Описание"
+          minLength="2" maxLength="200"
+          autoComplete="off"
+          required
+        />
         <span className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm name="avatar" heading="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
-        <input className="popup__input popup__input_avatar" name="avatar" type="url" placeholder="Ссылка на фото" autoComplete="off" required />
+        <input
+          className="popup__input popup__input_avatar"
+          name="avatar"
+          type="url"
+          placeholder="Ссылка на фото"
+          autoComplete="off"
+          required
+        />
         <span className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm name="card" heading="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
-        <input className="popup__input popup__input_card-name" name="place" type="text" placeholder="Название" minLength="2" maxLength="30" autoComplete="off" required />
+        <input
+          className="popup__input popup__input_card-name"
+          name="place"
+          type="text"
+          placeholder="Название"
+          minLength="2" maxLength="30"
+          autoComplete="off"
+          required />
         <span className="popup__error"></span>
-        <input className="popup__input popup__input_card-link" name="link" type="url" placeholder="Ссылка на картинку" autoComplete="off" required />
+        <input
+          className="popup__input popup__input_card-link"
+          name="link"
+          type="url"
+          placeholder="Ссылка на картинку"
+          autoComplete="off"
+          required
+        />
         <span className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm name="delete" heading="Вы уверены?" onClose={closeAllPopups} />
