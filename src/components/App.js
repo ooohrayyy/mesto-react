@@ -4,6 +4,7 @@ import api from '../utils/Api.js';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
+import EditProfilePopup from './EditProfilePopup.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from "./ImagePopup.js";
 
@@ -80,28 +81,7 @@ function App () {
         />
         <Footer />
       </div>
-      <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-        <input
-          className="popup__input popup__input_name"
-          name="name"
-          type="text"
-          placeholder="Имя"
-          minLength="2" maxLength="40"
-          autoComplete="off"
-          required
-        />
-        <span className="popup__error"></span>
-        <input
-          className="popup__input popup__input_description"
-          name="description"
-          type="text"
-          placeholder="Описание"
-          minLength="2" maxLength="200"
-          autoComplete="off"
-          required
-        />
-        <span className="popup__error"></span>
-      </PopupWithForm>
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
       <PopupWithForm name="avatar" heading="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
         <input
           className="popup__input popup__input_avatar"
