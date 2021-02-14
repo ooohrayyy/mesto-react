@@ -1,8 +1,10 @@
 import React from 'react';
 import api from '../utils/Api.js';
+
 import Card from './Card.js';
 
 // import jaque from '../resources/images/jaque.png';
+
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function Main (props) {
