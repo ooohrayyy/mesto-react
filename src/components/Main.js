@@ -24,6 +24,15 @@ function Main (props) {
 
   // * Функции
 
+  function handleCardDelete (card) { // Обработка удаления карточки
+    api.deleteCard(card._id)
+      .then(deletedCard => {
+        const newCards = cards.filter(deletedCard => deletedCard._id !== card._id);
+        setCards(newCards);
+      })
+      .catch(err => console.log(`Ошибка: ${err}`));
+  }
+
   function handleCardLike (card) { // Обработка лайка карточки
     api.toggleLike(card._id, card.isLiked)
       .then(newCard => {
@@ -49,7 +58,13 @@ function Main (props) {
       </section>
       <section className="cards main__cards">
         {cards.map((item) => (
-          <Card item={item} key={item._id} onCardClick={props.onCardClick} onCardLike={handleCardLike} />
+          <Card
+            item={item}
+            key={item._id}
+            onCardClick={props.onCardClick}
+            onCardDelete={handleCardDelete}
+            onCardLike={handleCardLike}
+          />
         ))}
       </section>
     </main>

@@ -23,6 +23,10 @@ function Card (props) {
     props.onCardClick(cardData);
   }
 
+  function handleDelete () {
+    props.onCardDelete(cardData); // Удаление карточки
+  }
+
   function handleLike () { // Клик по лайку
     props.onCardLike(cardData);
   }
@@ -32,7 +36,7 @@ function Card (props) {
       <button className="card__open-fullpic" type="button" onClick={handleClick}>
         <img className="card__image" src={cardData.link} alt={cardData.alt} />
       </button>
-      {cardData.isOwn && (<button className="card__delete" type="button"></button>)}
+      {cardData.isOwn && (<button className="card__delete" type="button" onClick={handleDelete}></button>)}
       <div className="card__label">
         <h2 className="card__name">{cardData.name}</h2>
         <button className={cardLikeButtonClassName} type="button" onClick={handleLike}>
