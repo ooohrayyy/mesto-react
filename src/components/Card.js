@@ -13,9 +13,7 @@ function Card (props) {
   cardData.isOwn = cardData.owner._id === userInfo._id;
   cardData.isLiked = cardData.likes.some(like => like._id === userInfo._id)
 
-  // * Переменные стилей
-
-  const cardLikeButtonClassName = ( // Стиль кнопки лайка
+  const cardLikeButtonClassName = ( // * Стиль кнопки лайка
     `card__like ${cardData.isLiked ? 'card__like_active' : ''}`
   );
 
@@ -30,6 +28,7 @@ function Card (props) {
       <button className="card__open-fullpic" type="button" onClick={handleClick}>
         <img className="card__image" src={cardData.link} alt={cardData.alt} />
       </button>
+      {cardData.isOwn && (<button className="card__delete" type="button"></button>)}
       <div className="card__label">
         <h2 className="card__name">{cardData.name}</h2>
         <button className={cardLikeButtonClassName} type="button">
