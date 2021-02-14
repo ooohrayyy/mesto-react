@@ -8,11 +8,13 @@ import Card from './Card.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function Main (props) {
-  const userInfo = React.useContext(CurrentUserContext);
+  const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
 
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = React.useState([]); // * Стейт-переменная с карточками
 
-  React.useEffect(() => {
+  // * Эффекты при монтировании компонента
+
+  React.useEffect(() => { // Получение карточек с сервера
     api.fetchInitialCards()
       .then(res => {
         setCards(res);
