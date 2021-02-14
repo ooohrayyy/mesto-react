@@ -23,6 +23,10 @@ function Card (props) {
     props.onCardClick(cardData);
   }
 
+  function handleLike () { // Клик по лайку
+    props.onCardLike(cardData);
+  }
+
   return (
     <article className="card" key={props.i}>
       <button className="card__open-fullpic" type="button" onClick={handleClick}>
@@ -31,7 +35,7 @@ function Card (props) {
       {cardData.isOwn && (<button className="card__delete" type="button"></button>)}
       <div className="card__label">
         <h2 className="card__name">{cardData.name}</h2>
-        <button className={cardLikeButtonClassName} type="button">
+        <button className={cardLikeButtonClassName} type="button" onClick={handleLike}>
           <p className="card__counter">{cardData.likes.length}</p>
         </button>
       </div>

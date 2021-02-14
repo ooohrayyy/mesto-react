@@ -22,6 +22,17 @@ function Main (props) {
       .catch(err => console.log(`Ошибка: ${err}`));
   }, []);
 
+  // * Функции
+
+  function handleCardLike (card) { // Обработка лайка карточки
+    api.toggleLike(card._id, card.isLiked)
+      .then(newCard => {
+        const newCards = cards.map(item => item._id === card._id ? newCard : item);
+        setCards(newCards);
+      })
+      .catch(err => console.log(`Ошибка: ${err}`));
+  }
+
   return (
     <main className="main container__main">
       <section className="profile main__profile">
@@ -38,7 +49,7 @@ function Main (props) {
       </section>
       <section className="cards main__cards">
         {cards.map((item) => (
-          <Card item={item} key={item._id} onCardClick={props.onCardClick} />
+          <Card item={item} key={item._id} onCardClick={props.onCardClick} onCardLike={handleCardLike} />
         ))}
       </section>
     </main>
