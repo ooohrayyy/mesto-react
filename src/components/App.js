@@ -1,4 +1,5 @@
 import React from 'react';
+import api from '../utils/Api.js';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -6,6 +7,8 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 
 function App () {
+  // * Стейт-переменные и функции, которые их контролируют
+
   // Состояние попапа «Редактировать аватар»
 
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
@@ -41,6 +44,8 @@ function App () {
 
   const [selectedCard, setSelectedCard] = React.useState({}); // Состояние выбранной карточки
 
+  const [currentUser, setCurrentUser] = React.useState({}); // Состояние активного пользователя
+
   function closeAllPopups () { // Закрытие всех попапов и обнуление выбранной карточки
     setAvatarPopup(false);
     setProfilePopup(false);
@@ -49,6 +54,16 @@ function App () {
 
     setSelectedCard(null);
   }
+
+  // * Эффекты при монтировании компонента
+
+  React.useEffect(() => { // Получение данных о пользователе
+    api.fetchUserInfo()
+      .then(res => {
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(`Ошибка: ${err}`));
+  }, []);
 
   return (
     <>
