@@ -29,11 +29,22 @@ function EditProfilePopup (props) {
 
   React.useEffect(() => { // Установка имени и описания пользователя по умолчанию
     setName(userInfo.name);
-    setDescription(userInfo.description);
+    setDescription(userInfo.about);
   }, [userInfo]);
 
+  // * Функции
+
+  function handleSubmit (evt) { // Обработка сабмита формы
+    evt.preventDefault();
+
+    props.onUpdateUser({
+      name,
+      description
+    });
+  }
+
   return (
-    <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={props.isOpen} onClose={props.onClose}>
+    <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={props.isOpen} onSubmit={handleSubmit} onClose={props.onClose}>
       <input
         className="popup__input popup__input_name"
         type="text"

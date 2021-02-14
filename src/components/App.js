@@ -48,7 +48,7 @@ function App () {
 
   const [selectedCard, setSelectedCard] = React.useState({}); // Состояние выбранной карточки
 
-  const [currentUser, setCurrentUser] = React.useState({}); // Состояние активного пользователя
+  const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' }); // Состояние активного пользователя
 
   function closeAllPopups () { // Закрытие всех попапов и обнуление выбранной карточки
     setAvatarPopup(false);
@@ -69,6 +69,17 @@ function App () {
       .catch(err => console.log(`Ошибка: ${err}`));
   }, []);
 
+  // * Функции
+
+  function handleUpdateUser (values) { // Обновление информации о пользователе
+    api.patchUserInfo(values)
+      .then(res => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(err => `Ошибка: ${err}`);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="container root__container">   
@@ -81,7 +92,7 @@ function App () {
         />
         <Footer />
       </div>
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onUpdateUser={handleUpdateUser} onClose={closeAllPopups} />
       <PopupWithForm name="avatar" heading="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
         <input
           className="popup__input popup__input_avatar"
