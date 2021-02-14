@@ -2,7 +2,11 @@ import React from 'react';
 
 import PopupWithForm from './PopupWithForm.js';
 
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+
 function EditProfilePopup (props) {
+  const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
+
   // * Управляемые стейт-переменные
 
   // Имя пользователя
@@ -20,6 +24,13 @@ function EditProfilePopup (props) {
   function handleDescriptionChange (evt) {
     setDescription(evt.target.value);
   }
+
+  // * Эффекты при монтировании компонента
+
+  React.useEffect(() => { // Установка имени и описания пользователя по умолчанию
+    setName(userInfo.name);
+    setDescription(userInfo.description);
+  }, [userInfo]);
 
   return (
     <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={props.isOpen} onClose={props.onClose}>
