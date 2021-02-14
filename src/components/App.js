@@ -6,31 +6,42 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 
 function App () {
-  const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
-  const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
-  const [isImagePopupOpen, setImagePopup] = React.useState(false);
+  // Состояние попапа «Редактировать аватар»
 
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
 
   function handleEditAvatarClick () {
     setAvatarPopup(true);
   }
-  
+
+  // Состояние попапа «Редактировать профиль»
+
+  const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
+
   function handleEditProfileClick () {
     setProfilePopup(true);
   }
-  
+
+  // Состояние попапа «Добавить карточку»
+
+  const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
+
   function handleAddPlaceClick () {
     setAddPlacePopup(true);
   }
+
+  // Состояние попапа с полноразмерной картинкой
+
+  const [isImagePopupOpen, setImagePopup] = React.useState(false);
 
   function handleCardClick () {
     setSelectedCard(this.item);
     setImagePopup(true);
   }
 
-  function closeAllPopups () {
+  const [selectedCard, setSelectedCard] = React.useState({}); // Состояние выбранной карточки
+
+  function closeAllPopups () { // Закрытие всех попапов и обнуление выбранной карточки
     setAvatarPopup(false);
     setProfilePopup(false);
     setAddPlacePopup(false);
