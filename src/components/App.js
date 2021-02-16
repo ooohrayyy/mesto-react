@@ -5,6 +5,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from "./ImagePopup.js";
 
@@ -93,17 +94,7 @@ function App () {
         <Footer />
       </div>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onUpdateUser={handleUpdateUser} onClose={closeAllPopups} />
-      <PopupWithForm name="avatar" heading="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
-        <input
-          className="popup__input popup__input_avatar"
-          name="avatar"
-          type="url"
-          placeholder="Ссылка на фото"
-          autoComplete="off"
-          required
-        />
-        <span className="popup__error"></span>
-      </PopupWithForm>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
       <PopupWithForm name="card" heading="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <input
           className="popup__input popup__input_card-name"
