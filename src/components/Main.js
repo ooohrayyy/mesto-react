@@ -1,46 +1,11 @@
 import React from 'react';
-import api from '../utils/Api.js';
 
 import Card from './Card.js';
-
-// import jaque from '../resources/images/jaque.png';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function Main (props) {
   const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
-
-  const [cards, setCards] = React.useState([]); // * Стейт-переменная с карточками
-
-  // * Эффекты при монтировании компонента
-
-  React.useEffect(() => { // Получение карточек с сервера
-    api.fetchInitialCards()
-      .then(res => {
-        setCards(res);
-      })
-      .catch(err => console.log(`Ошибка: ${err}`));
-  }, []);
-
-  // * Функции
-
-  function handleCardDelete (card) { // Обработка удаления карточки
-    api.deleteCard(card._id)
-      .then(deletedCard => {
-        const newCards = cards.filter(deletedCard => deletedCard._id !== card._id);
-        setCards(newCards);
-      })
-      .catch(err => console.log(`Ошибка: ${err}`));
-  }
-
-  function handleCardLike (card) { // Обработка лайка карточки
-    api.toggleLike(card._id, card.isLiked)
-      .then(newCard => {
-        const newCards = cards.map(item => item._id === card._id ? newCard : item);
-        setCards(newCards);
-      })
-      .catch(err => console.log(`Ошибка: ${err}`));
-  }
 
   return (
     <main className="main container__main">
@@ -57,13 +22,13 @@ function Main (props) {
         <button className="profile__add" type="button" onClick={props.onAddPlace} />
       </section>
       <section className="cards main__cards">
-        {cards.map((item) => (
+        {props.cards.map((item) => (
           <Card
             item={item}
             key={item._id}
             onCardClick={props.onCardClick}
-            onCardDelete={handleCardDelete}
-            onCardLike={handleCardLike}
+            onCardDelete={props.onCardDelete}
+            onCardLike={props.onCardLike}
           />
         ))}
       </section>
