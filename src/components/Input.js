@@ -8,11 +8,7 @@ function Input (props) {
   // * Функции
 
   function validateInput () { // Валидация инпута
-    if (inputRef.current.validity.valid) {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
+    inputRef.current.validity.valid ? setIsValid(true) : setIsValid(false);
   }
 
   function handleChange (evt) { // Хэндлер изменения
