@@ -6,6 +6,7 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
+import AddPlacePopup from './AddPlacePopup.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from "./ImagePopup.js";
 
@@ -135,26 +136,7 @@ function App () {
       </div>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onUpdateUser={handleUpdateUser} onClose={closeAllPopups} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onUpdateAvatar={handleUpdateAvatar} onClose={closeAllPopups} />
-      <PopupWithForm name="card" heading="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
-        <input
-          className="popup__input popup__input_card-name"
-          name="place"
-          type="text"
-          placeholder="Название"
-          minLength="2" maxLength="30"
-          autoComplete="off"
-          required />
-        <span className="popup__error"></span>
-        <input
-          className="popup__input popup__input_card-link"
-          name="link"
-          type="url"
-          placeholder="Ссылка на картинку"
-          autoComplete="off"
-          required
-        />
-        <span className="popup__error"></span>
-      </PopupWithForm>
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
       <PopupWithForm name="delete" heading="Вы уверены?" onClose={closeAllPopups} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
