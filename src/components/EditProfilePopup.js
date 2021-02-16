@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PopupWithForm from './PopupWithForm.js';
+import Input from './Input.js';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
@@ -45,7 +46,7 @@ function EditProfilePopup (props) {
 
   return (
     <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={props.isOpen} onSubmit={handleSubmit} onClose={props.onClose}>
-      <input
+      {/* <input
         className="popup__input popup__input_name"
         type="text"
         name="name"
@@ -56,8 +57,17 @@ function EditProfilePopup (props) {
         required
         onChange={handleNameChange}
       />
-      <span className="popup__error"></span>
-      <input
+      <span className="popup__error"></span> */}
+      <Input
+        inputModifier="popup__input_name"
+        inputType="text"
+        inputName="name"
+        inputValue={name}
+        inputPlaceholder="Имя"
+        inputMaxLength="40"
+        onChange={handleNameChange}
+      />
+      {/* <input
         className="popup__input popup__input_description"
         type="text"
         name="description"
@@ -68,7 +78,16 @@ function EditProfilePopup (props) {
         required
         onChange={handleDescriptionChange}
       />
-      <span className="popup__error"></span>
+      <span className="popup__error"></span> */}
+      <Input
+        inputModifier="popup__input_description"
+        inputType="text"
+        inputName="description"
+        inputValue={description}
+        inputPlaceholder="Описание"
+        inputMaxLength="200"
+        onChange={handleDescriptionChange}
+      />
     </PopupWithForm>
   );
 }
