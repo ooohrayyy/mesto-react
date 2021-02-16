@@ -70,7 +70,7 @@ function App () {
       .then(res => {
         setCurrentUser(res);
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(err));
   }, []);
 
   React.useEffect(() => { // Получение карточек с сервера
@@ -78,7 +78,7 @@ function App () {
       .then(res => {
         setCards(res);
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(err));
   }, []);
 
   // * Функции
@@ -89,7 +89,7 @@ function App () {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch(err => `Ошибка: ${err}`);
+      .catch(err => console.log(err));
   }
 
   function handleUpdateAvatar (link) { // Обновление аватарки пользователя
@@ -116,7 +116,7 @@ function App () {
         const newCards = cards.filter(deletedCard => deletedCard._id !== card._id);
         setCards(newCards);
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(err));
   }
 
   function handleCardLike (card) { // Обработка лайка карточки
@@ -125,7 +125,7 @@ function App () {
         const newCards = cards.map(item => item._id === card._id ? newCard : item);
         setCards(newCards);
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(err));
   }
 
   return (
