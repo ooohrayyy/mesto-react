@@ -101,6 +101,15 @@ function App () {
       .catch(err => console.log(err));
   }
 
+  function handleAddPlaceSubmit (data) { // Добавление новой карточки
+    api.postCard(data)
+      .then(res => {
+        setCards([res, ...cards]);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
+
   function handleCardDelete (card) { // Обработка удаления карточки
     api.deleteCard(card._id)
       .then(deletedCard => {
@@ -136,7 +145,7 @@ function App () {
       </div>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onUpdateUser={handleUpdateUser} onClose={closeAllPopups} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onUpdateAvatar={handleUpdateAvatar} onClose={closeAllPopups} />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onAddPlaceSubmit={handleAddPlaceSubmit} onClose={closeAllPopups} />
       <PopupWithForm name="delete" heading="Вы уверены?" onClose={closeAllPopups} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
