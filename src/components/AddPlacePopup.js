@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PopupWithForm from './PopupWithForm.js';
+import Input from './Input.js';
 
 function AddPlacePopup (props) {
   // * Управляемые стейт-переменные
@@ -24,6 +25,9 @@ function AddPlacePopup (props) {
       name: placeName,
       link: placePic
     });
+
+    setPlaceName('');
+    setPlacePic('');
   }
 
   return (
@@ -34,29 +38,23 @@ function AddPlacePopup (props) {
       onSubmit={handleSubmit}
       onClose={props.onClose}
     >
-      <input
-        className="popup__input popup__input_card-name"
-        type="text"
-        name="place"
-        value={placeName}
-        placeholder="Название"
-        minLength="2" maxLength="30"
-        autoComplete="off"
-        required
+      <Input
+        inputModifier="popup__input_card-name"
+        inputType="text"
+        inputName="place"
+        inputValue={placeName}
+        inputPlaceholder="Название"
+        inputMaxLength="30"
         onChange={handlePlaceNameChange}
       />
-      <span className="popup__error"></span>
-      <input
-        className="popup__input popup__input_card-link"
-        type="url"
-        name="link"
-        value={placePic}
-        placeholder="Ссылка на картинку"
-        autoComplete="off"
-        required
+      <Input
+        inputModifier="popup__input_card-link"
+        inputType="url"
+        inputName="link"
+        inputValue={placePic}
+        inputPlaceholder="Ссылка на картинку"
         onChange={handlePlacePicChange}
       />
-      <span className="popup__error"></span>
     </PopupWithForm>
   );
 }
