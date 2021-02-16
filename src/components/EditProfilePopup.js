@@ -45,7 +45,14 @@ function EditProfilePopup (props) {
   }
 
   return (
-    <PopupWithForm name="profile" heading="Редактировать профиль" isOpen={props.isOpen} onSubmit={handleSubmit} onClose={props.onClose}>
+    <PopupWithForm
+      initialValidityState={props.initialValidityState}
+      name="profile"
+      heading="Редактировать профиль"
+      isOpen={props.isOpen}
+      onSubmit={handleSubmit}
+      onClose={props.onClose}
+    >
       <Input
         inputModifier="popup__input_name"
         inputType="text"

@@ -20,7 +20,7 @@ function EditAvatarPopup (props) {
   }
 
   return (
-    <PopupWithForm name="avatar" heading="Обновить аватар" isOpen={props.isOpen} onSubmit={handleSubmit} onClose={props.onClose}>
+    <PopupWithForm initialValidityState={props.initialValidityState} name="avatar" heading="Обновить аватар" isOpen={props.isOpen} onSubmit={handleSubmit} onClose={props.onClose}>
       <Input
         inputModifier="popup__input_avatar"
         inputName="avatar"

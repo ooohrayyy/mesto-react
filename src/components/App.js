@@ -143,9 +143,24 @@ function App () {
         />
         <Footer />
       </div>
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onUpdateUser={handleUpdateUser} onClose={closeAllPopups} />
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onUpdateAvatar={handleUpdateAvatar} onClose={closeAllPopups} />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onAddPlaceSubmit={handleAddPlaceSubmit} onClose={closeAllPopups} />
+      <EditProfilePopup
+        isOpen={isEditProfilePopupOpen}
+        initialValidityState={true}
+        onUpdateUser={handleUpdateUser}
+        onClose={closeAllPopups}
+      />
+      <EditAvatarPopup
+        isOpen={isEditAvatarPopupOpen}
+        initialValidityState={false}
+        onUpdateAvatar={handleUpdateAvatar}
+        onClose={closeAllPopups}
+      />
+      <AddPlacePopup
+        isOpen={isAddPlacePopupOpen}
+        initialValidityState={false}
+        onAddPlaceSubmit={handleAddPlaceSubmit}
+        onClose={closeAllPopups}
+      />
       <PopupWithForm name="delete" heading="Вы уверены?" onClose={closeAllPopups} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>

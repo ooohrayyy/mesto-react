@@ -32,6 +32,7 @@ function AddPlacePopup (props) {
 
   return (
     <PopupWithForm
+      initialValidityState={props.initialValidityState}
       name="card"
       heading="Новое место"
       isOpen={props.isOpen}
