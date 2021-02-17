@@ -2,5 +2,12 @@
   width: auto;
   height: 104px;
   margin-bottom: 40px;
-  fill: black;
+  /* fill: black; */
+}
+
+@media screen and (max-width: 499px) {
+  .loader__img {
+    height: 70px;
+    margin-bottom: 20px;
+  }
 }

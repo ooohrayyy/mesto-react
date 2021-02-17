@@ -6,3 +6,11 @@
   height: 156px;
   margin: 0 34px 64px;
 }
+
+@media screen and (max-width: 499px) {
+  .loader {
+    width: 210px;
+    height: 120px;
+    margin: 0 17px 32px;
+  }
+}
