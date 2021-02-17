@@ -24,7 +24,7 @@ function PopupWithForm (props) {
           >
             {(props.name === 'delete') ? 'Удалить' : 'Сохранить'}
           </button>)}
-          {props.isLoading && (<Loader />)}
+          {props.isLoading && (<Loader name={props.name} />)}
         </form>
     </div>
   );
