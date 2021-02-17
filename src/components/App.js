@@ -37,6 +37,7 @@ function App () {
   // Состояние попапа «Добавить карточку»
 
   const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
+  const [isAddPlaceLoading, setAddPlaceLoading] = React.useState(false);
 
   function handleAddPlaceClick () {
     setAddPlacePopup(true);
@@ -120,9 +121,14 @@ function App () {
   }
 
   function handleAddPlaceSubmit (data) { // Добавление новой карточки
+    setAddPlaceLoading(true);
+
     api.postCard(data)
       .then(res => {
         setCards([res, ...cards]);
+        setTimeout(() => {
+          setAddPlaceLoading(false);
+        }, 400);
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -177,6 +183,7 @@ function App () {
       />
       <AddPlacePopup
         isOpen={isAddPlacePopupOpen}
+        isLoading={isAddPlaceLoading}
         initialValidityState={false}
         onAddPlaceSubmit={handleAddPlaceSubmit}
         onClose={closeAllPopups}
