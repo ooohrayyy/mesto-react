@@ -29,7 +29,7 @@ function App () {
   // Состояние попапа «Редактировать профиль»
 
   const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
-  const [isEditProfileLoading, setProfilePopupLoading] = React.useState(false);
+  const [isEditProfileLoading, setEditProfileLoading] = React.useState(false);
 
   function handleEditProfileClick () {
     setProfilePopup(true);
@@ -99,13 +99,13 @@ function App () {
   // * Функции
 
   function handleUpdateUser (values) { // Обновление информации о пользователе
-    setProfilePopupLoading(true);
+    setEditProfileLoading(true);
 
     api.patchUserInfo(values)
       .then(res => {
         setCurrentUser(res);
         setTimeout(() => {
-          setProfilePopupLoading(false);
+          setEditProfileLoading(false);
         }, 400);
         closeAllPopups();
       })
