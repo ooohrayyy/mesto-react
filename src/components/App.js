@@ -46,6 +46,7 @@ function App () {
   const [isConfirmDeletePopupOpen, setConfirmDeletePopup] = React.useState(false);
 
   function handleDeleteCardClick () {
+    // setSelectedCard(this.item);
     setConfirmDeletePopup(true);
   }
 
@@ -169,7 +170,7 @@ function App () {
         onAddPlaceSubmit={handleAddPlaceSubmit}
         onClose={closeAllPopups}
       />
-      <ConfirmDeletePopup onClose={closeAllPopups} />
+      <ConfirmDeletePopup card={selectedCard} isOpen={isConfirmDeletePopupOpen} onClose={closeAllPopups} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
