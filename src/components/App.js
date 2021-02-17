@@ -28,6 +28,7 @@ function App () {
   // Состояние попапа «Редактировать профиль»
 
   const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
+  const [isEditProfileLoading, setProfilePopupLoading] = React.useState(false);
 
   function handleEditProfileClick () {
     setProfilePopup(true);
@@ -96,9 +97,14 @@ function App () {
   // * Функции
 
   function handleUpdateUser (values) { // Обновление информации о пользователе
+    setProfilePopupLoading(true);
+
     api.patchUserInfo(values)
       .then(res => {
         setCurrentUser(res);
+        setTimeout(() => {
+          setProfilePopupLoading(false);
+        }, 400);
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -158,6 +164,7 @@ function App () {
       </div>
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
+        isLoading={isEditProfileLoading}
         initialValidityState={true}
         onUpdateUser={handleUpdateUser}
         onClose={closeAllPopups}

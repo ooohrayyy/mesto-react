@@ -64,6 +64,7 @@ function EditProfilePopup (props) {
 
   return (
     <PopupWithForm
+      isLoading={props.isLoading}
       formValidityState={formValidity}
       onFormValidityChange={setFormValidity}
       name="profile"
