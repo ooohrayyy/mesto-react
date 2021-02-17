@@ -1,0 +1,15 @@
+.card__loader {
+  position: relative;
+  flex-shrink: 0;
+  width: 21px;
+  height: 19px;
+  padding: 0;
+  margin: 31px 23px 30px 23px;
+  border: none;
+  background-color: white;
+  background-image: url(../../../resources/images/svgs/like-loader.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: .1s linear;
+  cursor: pointer;
+}
