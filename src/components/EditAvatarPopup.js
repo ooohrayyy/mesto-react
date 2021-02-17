@@ -43,6 +43,7 @@ function EditAvatarPopup (props) {
 
   return (
     <PopupWithForm
+      isLoading={props.isLoading}
       formValidityState={formValidity}
       onFormValidityChange={setFormValidity}
       name="avatar"

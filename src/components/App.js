@@ -20,6 +20,7 @@ function App () {
   // Состояние попапа «Редактировать аватар»
 
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
+  const [isEditAvatarLoading, setEditAvatarLoading] = React.useState(false);
 
   function handleEditAvatarClick () {
     setAvatarPopup(true);
@@ -111,9 +112,14 @@ function App () {
   }
 
   function handleUpdateAvatar (link) { // Обновление аватарки пользователя
+    setEditAvatarLoading(true);
+
     api.updateAvatar(link)
       .then(res => {
         setCurrentUser(res);
+        setTimeout(() => {
+          setEditAvatarLoading(false);
+        }, 400);
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -176,6 +182,7 @@ function App () {
       />
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
+        isLoading={isEditAvatarLoading}
         initialValidityState={false}
         onUpdateAvatar={handleUpdateAvatar}
         onClose={closeAllPopups}
