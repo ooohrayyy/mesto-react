@@ -7,6 +7,7 @@ function Input (props) {
 
   function handleChange (evt) { // Хэндлер изменения
     props.onValueChange(evt);
+    console.log(evt.target);
     props.onInputValidityChange(evt.target.validity.valid);
   }
 
@@ -14,7 +15,7 @@ function Input (props) {
     <>
       <input
         ref={inputRef}
-        className={`popup__input ${props.inputModifier} ${(!props.formIsValid && (!props.inputValidityState && ('popup__input_invalid')))}`}
+        className={`popup__input ${props.inputModifier} ${(!props.inputValidityState && ('popup__input_invalid'))}`}
         type={props.inputType}
         name={props.inputName}
         value={props.inputValue}
@@ -24,12 +25,11 @@ function Input (props) {
         required
         onChange={handleChange}
       />
-      {!props.formIsValid &&
-      (!props.inputValidityState &&
+      {!props.inputValidityState &&
       (<span className="popup__error popup__error_active">
         {inputRef.current && inputRef.current.validationMessage}
       </span>)
-      )}
+      }
     </>
   );
 }

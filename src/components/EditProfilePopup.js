@@ -26,9 +26,10 @@ function EditProfilePopup (props) {
     setDescription(evt.target.value);
   }
 
-  // Состояние валидации
+  const [formValidity, setFormValidity] = React.useState(true); // Состояние валидности формы
 
-  const [formValidity, setFormValidity] = React.useState(true);
+  const [nameValidity, setNameValidity] = React.useState(true); // Состояние валидности инпута с именем
+  const [descriptionValidity, setDescriptionValidity] = React.useState(true); // Состояние валидности инпута с описанием
 
   // * Эффекты при монтировании компонента
 
@@ -56,6 +57,8 @@ function EditProfilePopup (props) {
     setName(userInfo.name);
     setDescription(userInfo.about);
 
+    setNameValidity(true);
+    setDescriptionValidity(true);
     setFormValidity(true);
   }
 
@@ -76,8 +79,9 @@ function EditProfilePopup (props) {
         inputValue={name}
         inputPlaceholder="Имя"
         inputMaxLength="40"
-        formIsValid={formValidity}
-        onChange={handleNameChange}
+        inputValidityState={nameValidity}
+        onInputValidityChange={setNameValidity}
+        onValueChange={handleNameChange}
       />
       <Input
         inputModifier="popup__input_description"
@@ -86,8 +90,9 @@ function EditProfilePopup (props) {
         inputValue={description}
         inputPlaceholder="Описание"
         inputMaxLength="200"
-        formIsValid={formValidity}
-        onChange={handleDescriptionChange}
+        inputValidityState={descriptionValidity}
+        onInputValidityChange={setDescriptionValidity}
+        onValueChange={handleDescriptionChange}
       />
     </PopupWithForm>
   );
