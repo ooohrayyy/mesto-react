@@ -17,7 +17,9 @@ function EditAvatarPopup (props) {
     setLink(evt.target.value);
   }
 
-  const [formValidity, setFormValidity] = React.useState(false); // Состояние валидации
+  const [formValidity, setFormValidity] = React.useState(false); // Состояние валидности формы
+
+  const [inputValidity, setInputValidity] = React.useState(true); // Состояние валидности инпута
 
   // * Функции
 
@@ -27,6 +29,7 @@ function EditAvatarPopup (props) {
     props.onUpdateAvatar(link);
 
     setLink('');
+    setInputValidity(true);
     setFormValidity(false);
   }
 
@@ -34,6 +37,7 @@ function EditAvatarPopup (props) {
     props.onClose();
 
     setLink('');
+    setInputValidity(true);
     setFormValidity(false);
   }
 
@@ -52,7 +56,9 @@ function EditAvatarPopup (props) {
         inputValue={link}
         inputType="url"
         inputPlaceholder="Ссылка на фото"
-        onChange={handleLinkChange}
+        inputValidityState={inputValidity}
+        onInputValidityChange={setInputValidity}
+        onValueChange={handleLinkChange}
       />
     </PopupWithForm>
   );
