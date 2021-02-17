@@ -47,6 +47,7 @@ function App () {
   // Состояние попапа с подтверждением удаления
 
   const [isConfirmDeletePopupOpen, setConfirmDeletePopup] = React.useState(false);
+  const [isConfirmDeleteLoading, setConfirmDeleteLoading] = React.useState(false);
 
   function handleDeleteCardClick () {
     setSelectedCard(this.item);
@@ -140,10 +141,15 @@ function App () {
   }
 
   function handleCardDelete (card) { // Обработка удаления карточки
+    setConfirmDeleteLoading(true);
+
     api.deleteCard(card._id)
       .then(deletedCard => {
         const newCards = cards.filter(deletedCard => deletedCard._id !== card._id);
         setCards(newCards);
+        setTimeout(() => {
+          setConfirmDeleteLoading(false);
+        }, 400);
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -197,6 +203,7 @@ function App () {
       <ConfirmDeletePopup
         card={selectedCard}
         isOpen={isConfirmDeletePopupOpen}
+        isLoading={isConfirmDeleteLoading}
         initialValidityState={true}
         onDeleteConfirmation={handleCardDelete}
         onClose={closeAllPopups}

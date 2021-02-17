@@ -8,6 +8,7 @@ function ConfirmDeletePopup (props) {
 
   return (
     <PopupWithForm
+      isLoading={props.isLoading}
       formValidityState={props.initialValidityState}
       name="delete"
       heading="Вы уверены?"
