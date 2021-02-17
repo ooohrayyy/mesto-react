@@ -1,12 +1,18 @@
 import PopupWithForm from './PopupWithForm.js';
 
 function ConfirmDeletePopup (props) {
+  function handleSubmit (evt) {
+    evt.preventDefault();
+    props.onDeleteConfirmation(props.card);
+  }
+
   return (
     <PopupWithForm
+      validityState={props.initialValidityState}
       name="delete"
       heading="Вы уверены?"
       isOpen={props.isOpen}
-      onSubmit={props.onSubmit}
+      onSubmit={handleSubmit}
       onClose={props.onClose}
     />
   )

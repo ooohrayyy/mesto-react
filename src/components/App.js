@@ -46,7 +46,8 @@ function App () {
   const [isConfirmDeletePopupOpen, setConfirmDeletePopup] = React.useState(false);
 
   function handleDeleteCardClick () {
-    // setSelectedCard(this.item);
+    setSelectedCard(this.item);
+    console.log(this.item);
     setConfirmDeletePopup(true);
   }
 
@@ -56,6 +57,7 @@ function App () {
 
   function handleCardClick () {
     setSelectedCard(this.item);
+    console.log(this.item);
     setImagePopup(true);
   }
 
@@ -67,6 +69,7 @@ function App () {
     setAvatarPopup(false);
     setProfilePopup(false);
     setAddPlacePopup(false);
+    setConfirmDeletePopup(false);
     setImagePopup(false);
 
     setSelectedCard(null);
@@ -124,6 +127,7 @@ function App () {
       .then(deletedCard => {
         const newCards = cards.filter(deletedCard => deletedCard._id !== card._id);
         setCards(newCards);
+        closeAllPopups();
       })
       .catch(err => console.log(err));
   }
@@ -147,7 +151,8 @@ function App () {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
-          onCardDelete={handleCardDelete}
+          // onCardDelete={handleCardDelete}
+          onCardDelete={handleDeleteCardClick}
           onCardLike={handleCardLike}
         />
         <Footer />
@@ -170,7 +175,13 @@ function App () {
         onAddPlaceSubmit={handleAddPlaceSubmit}
         onClose={closeAllPopups}
       />
-      <ConfirmDeletePopup card={selectedCard} isOpen={isConfirmDeletePopupOpen} onClose={closeAllPopups} />
+      <ConfirmDeletePopup
+        card={selectedCard}
+        isOpen={isConfirmDeletePopupOpen}
+        initialValidityState={true}
+        onDeleteConfirmation={handleCardDelete}
+        onClose={closeAllPopups}
+      />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
