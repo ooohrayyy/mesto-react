@@ -1,9 +1,7 @@
 import React from 'react';
 
 function PopupWithForm (props) {
-  // * Функциии
-
-  function handleChange (evt) { // Хэндлер изменения формы
+  function handleChange (evt) { // * Хэндлер изменения формы
     props.onFormValidityChange(evt.currentTarget.checkValidity());
   }
 
