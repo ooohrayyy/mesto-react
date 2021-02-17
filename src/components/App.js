@@ -49,7 +49,6 @@ function App () {
 
   function handleDeleteCardClick () {
     setSelectedCard(this.item);
-    console.log(this.item);
     setConfirmDeletePopup(true);
   }
 
