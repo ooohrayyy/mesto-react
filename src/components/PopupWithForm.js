@@ -1,20 +1,11 @@
 import React from 'react';
 
 function PopupWithForm (props) {
-  // const [formValidity, setFormValidity] = React.useState(props.initialValidityState); // * Стейт-переменная валидности формы
-
   // * Функциии
 
   function handleChange (evt) { // Хэндлер изменения формы
-    console.log(formValidity);
     props.onValidityChange(evt.currentTarget.checkValidity());
   }
-
-  // function handleSubmit (evt) { // Хэндлер сабмита
-  //   // setFormValidity(props.initialValidityState);
-
-  //   props.onSubmit(evt);
-  // }
 
   const formValidity = props.validityState;
 

@@ -35,7 +35,6 @@ function EditProfilePopup (props) {
   React.useEffect(() => { // Установка имени и описания пользователя по умолчанию
     setName(userInfo.name);
     setDescription(userInfo.about);
-    console.log(name, description);
   }, [userInfo]);
 
   // * Функции
