@@ -4,10 +4,8 @@ function PopupWithForm (props) {
   // * Функциии
 
   function handleChange (evt) { // Хэндлер изменения формы
-    props.onValidityChange(evt.currentTarget.checkValidity());
+    props.onFormValidityChange(evt.currentTarget.checkValidity());
   }
-
-  const formValidity = props.validityState;
 
   return (
     <div className={`popup popup-${props.name} root__popup ${props.isOpen ? 'popup_opened' : ''}`}>
@@ -22,7 +20,7 @@ function PopupWithForm (props) {
           <button
             className={`popup__button ${(props.name === 'delete') ? 'popup__button_type_delete' : ''}`}
             type="submit"
-            disabled={!formValidity}
+            disabled={!props.formValidityState}
           >
             {(props.name === 'delete') ? 'Удалить' : 'Сохранить'}
           </button>

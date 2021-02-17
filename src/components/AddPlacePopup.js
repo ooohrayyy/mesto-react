@@ -54,8 +54,8 @@ function AddPlacePopup (props) {
 
   return (
     <PopupWithForm
-      validityState={formValidity}
-      onValidityChange={setFormValidity}
+      formValidityState={formValidity}
+      onFormValidityChange={setFormValidity}
       name="card"
       heading="Новое место"
       isOpen={props.isOpen}

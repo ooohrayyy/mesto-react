@@ -64,8 +64,8 @@ function EditProfilePopup (props) {
 
   return (
     <PopupWithForm
-      validityState={formValidity}
-      onValidityChange={setFormValidity}
+      formValidityState={formValidity}
+      onFormValidityChange={setFormValidity}
       name="profile"
       heading="Редактировать профиль"
       isOpen={props.isOpen}
