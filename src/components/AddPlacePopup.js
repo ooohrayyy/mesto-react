@@ -18,7 +18,10 @@ function AddPlacePopup (props) {
     setPlacePic(evt.target.value);
   }
 
-  const [formValidity, setFormValidity] = React.useState(false); // Состояние валидности
+  const [formValidity, setFormValidity] = React.useState(false); // Состояние валидности формы
+
+  const [nameValidity, setNameValidity] = React.useState(true); // Состояние валидности имени места
+  const [picValidity, setPicValidity] = React.useState(true); // Состояние валидности адреса иллюстрации
 
   // * Функции
 
@@ -33,6 +36,8 @@ function AddPlacePopup (props) {
     setPlaceName('');
     setPlacePic('');
 
+    setNameValidity(true);
+    setPicValidity(true);
     setFormValidity(false);
   }
 
@@ -42,6 +47,8 @@ function AddPlacePopup (props) {
     setPlaceName('');
     setPlacePic('');
 
+    setNameValidity(true);
+    setPicValidity(true);
     setFormValidity(false);
   }
 
@@ -62,7 +69,9 @@ function AddPlacePopup (props) {
         inputValue={placeName}
         inputPlaceholder="Название"
         inputMaxLength="30"
-        onChange={handlePlaceNameChange}
+        inputValidityState={nameValidity}
+        onInputValidityChange={setNameValidity}
+        onValueChange={handlePlaceNameChange}
       />
       <Input
         inputModifier="popup__input_card-link"
@@ -70,7 +79,9 @@ function AddPlacePopup (props) {
         inputName="link"
         inputValue={placePic}
         inputPlaceholder="Ссылка на картинку"
-        onChange={handlePlacePicChange}
+        inputValidityState={picValidity}
+        onInputValidityChange={setPicValidity}
+        onValueChange={handlePlacePicChange}
       />
     </PopupWithForm>
   );

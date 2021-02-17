@@ -7,7 +7,6 @@ function Input (props) {
 
   function handleChange (evt) { // Хэндлер изменения
     props.onValueChange(evt);
-    console.log(evt.target);
     props.onInputValidityChange(evt.target.validity.valid);
   }
 
