@@ -60,7 +60,6 @@ function App () {
 
   function handleCardClick () {
     setSelectedCard(this.item);
-    console.log(this.item);
     setImagePopup(true);
   }
 
