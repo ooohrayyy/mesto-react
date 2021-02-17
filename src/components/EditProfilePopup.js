@@ -8,7 +8,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 function EditProfilePopup (props) {
   const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
 
-  // * Управляемые стейт-переменные
+  // * Cтейт-переменные
 
   // Имя пользователя
 
@@ -26,11 +26,16 @@ function EditProfilePopup (props) {
     setDescription(evt.target.value);
   }
 
+  // Состояние валидации
+
+  const [formValidity, setFormValidity] = React.useState(true);
+
   // * Эффекты при монтировании компонента
 
   React.useEffect(() => { // Установка имени и описания пользователя по умолчанию
     setName(userInfo.name);
     setDescription(userInfo.about);
+    console.log(name, description);
   }, [userInfo]);
 
   // * Функции
@@ -42,16 +47,28 @@ function EditProfilePopup (props) {
       name,
       description
     });
+
+    setFormValidity(true);
+  }
+
+  function handleClose () { // Обработка закрытия формы
+    props.onClose();
+
+    setName(userInfo.name);
+    setDescription(userInfo.about);
+
+    setFormValidity(true);
   }
 
   return (
     <PopupWithForm
-      initialValidityState={props.initialValidityState}
+      validityState={formValidity}
+      onValidityChange={setFormValidity}
       name="profile"
       heading="Редактировать профиль"
       isOpen={props.isOpen}
       onSubmit={handleSubmit}
-      onClose={props.onClose}
+      onClose={handleClose}
     >
       <Input
         inputModifier="popup__input_name"
@@ -60,6 +77,7 @@ function EditProfilePopup (props) {
         inputValue={name}
         inputPlaceholder="Имя"
         inputMaxLength="40"
+        formIsValid={formValidity}
         onChange={handleNameChange}
       />
       <Input
@@ -69,6 +87,7 @@ function EditProfilePopup (props) {
         inputValue={description}
         inputPlaceholder="Описание"
         inputMaxLength="200"
+        formIsValid={formValidity}
         onChange={handleDescriptionChange}
       />
     </PopupWithForm>

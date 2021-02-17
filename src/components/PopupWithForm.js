@@ -1,22 +1,26 @@
 import React from 'react';
 
 function PopupWithForm (props) {
-  const [formValidity, setFormValidity] = React.useState(props.initialValidityState); // * Стейт-переменная валидности формы
+  // const [formValidity, setFormValidity] = React.useState(props.initialValidityState); // * Стейт-переменная валидности формы
 
   // * Функциии
 
   function handleChange (evt) { // Хэндлер изменения формы
-    setFormValidity(evt.currentTarget.checkValidity());
+    console.log(formValidity);
+    props.onValidityChange(evt.currentTarget.checkValidity());
   }
 
-  function handleSubmit (evt) { // Хэндлер сабмита
-    setFormValidity(props.initialValidityState);
-    props.onSubmit(evt);
-  }
+  // function handleSubmit (evt) { // Хэндлер сабмита
+  //   // setFormValidity(props.initialValidityState);
+
+  //   props.onSubmit(evt);
+  // }
+
+  const formValidity = props.validityState;
 
   return (
     <div className={`popup popup-${props.name} root__popup ${props.isOpen ? 'popup_opened' : ''}`}>
-        <form className="popup__container" name={props.name} noValidate onChange={handleChange} onSubmit={handleSubmit}>
+        <form className="popup__container" name={props.name} noValidate onChange={handleChange} onSubmit={props.onSubmit}>
           <button className="popup__close" type="button" onClick={props.onClose} />
           <h2 className="popup__heading">{props.heading}</h2>
           {props.children}
