@@ -4,7 +4,7 @@ import PopupWithForm from './PopupWithForm.js';
 import Input from './Input.js';
 
 function AddPlacePopup (props) {
-  // * Управляемые стейт-переменные
+  // * Стейт-переменные
 
   const [placeName, setPlaceName] = React.useState(''); // Имя места
 
@@ -18,7 +18,11 @@ function AddPlacePopup (props) {
     setPlacePic(evt.target.value);
   }
 
-  function handleSubmit (evt) { // * Хэндлер сабмита
+  const [formValidity, setFormValidity] = React.useState(false); // Состояние валидности
+
+  // * Функции
+
+  function handleSubmit (evt) { // Хэндлер сабмита
     evt.preventDefault();
 
     props.onAddPlaceSubmit({
@@ -28,16 +32,28 @@ function AddPlacePopup (props) {
 
     setPlaceName('');
     setPlacePic('');
+
+    setFormValidity(false);
+  }
+
+  function handleClose () { // Хэндлер закрытия
+    props.onClose();
+
+    setPlaceName('');
+    setPlacePic('');
+
+    setFormValidity(false);
   }
 
   return (
     <PopupWithForm
-      initialValidityState={props.initialValidityState}
+      validityState={formValidity}
+      onValidityChange={setFormValidity}
       name="card"
       heading="Новое место"
       isOpen={props.isOpen}
       onSubmit={handleSubmit}
-      onClose={props.onClose}
+      onClose={handleClose}
     >
       <Input
         inputModifier="popup__input_card-name"
