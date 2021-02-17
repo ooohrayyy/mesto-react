@@ -7,7 +7,7 @@ import Footer from './Footer.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
-import PopupWithForm from './PopupWithForm.js';
+import ConfirmDeletePopup from './ConfirmDeletePopup.js';
 import ImagePopup from "./ImagePopup.js";
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
@@ -39,6 +39,14 @@ function App () {
 
   function handleAddPlaceClick () {
     setAddPlacePopup(true);
+  }
+
+  // Состояние попапа с подтверждением удаления
+
+  const [isConfirmDeletePopupOpen, setConfirmDeletePopup] = React.useState(false);
+
+  function handleDeleteCardClick () {
+    setConfirmDeletePopup(true);
   }
 
   // Состояние попапа с полноразмерной картинкой
@@ -161,7 +169,7 @@ function App () {
         onAddPlaceSubmit={handleAddPlaceSubmit}
         onClose={closeAllPopups}
       />
-      <PopupWithForm name="delete" heading="Вы уверены?" onClose={closeAllPopups} />
+      <ConfirmDeletePopup onClose={closeAllPopups} />
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
