@@ -25,7 +25,7 @@ function Input (props) {
         onChange={handleChange}
       />
       {!props.inputValidityState &&
-      (<span className="popup__error popup__error_active">
+      (<span className="popup__error">
         {inputRef.current && inputRef.current.validationMessage}
       </span>)
       }
