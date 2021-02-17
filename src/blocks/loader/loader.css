@@ -1,7 +1,8 @@
 .loader {
   display: flex;
+  flex-direction: column;
   place-content: center;
   width: 358px;
   height: 156px;
-  margin: 0 34px;
+  margin: 0 34px 64px;
 }
