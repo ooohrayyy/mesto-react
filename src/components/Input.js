@@ -14,7 +14,7 @@ function Input (props) {
     <>
       <input
         ref={inputRef}
-        className={`popup__input ${props.inputModifier} ${(!props.inputValidityState && ('popup__input_invalid'))}`}
+        className={`popup__input ${props.inputModifier} ${(!props.inputValidityState ? 'popup__input_invalid' : '')}`}
         type={props.inputType}
         name={props.inputName}
         value={props.inputValue}
