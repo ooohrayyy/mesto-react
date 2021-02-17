@@ -160,7 +160,9 @@ function App () {
         const newCards = cards.map(item => item._id === card._id ? newCard : item);
         setCards(newCards);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   return (

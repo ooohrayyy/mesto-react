@@ -5,6 +5,10 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 function Card (props) {
   const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
 
+  const iL = React.useRef(false); // * Реф-переменная загрузки лайка
+
+  const [isLoading, setLikeIsLoading] = React.useState(iL.current); // * Стейт-переменная загрузки лайка
+
   // * Дополнение данных о карточке
 
   const cardData = props.item;
@@ -28,8 +32,19 @@ function Card (props) {
   }
 
   function handleLike () { // Клик по лайку
+    iL.current = true;
+    setLikeIsLoading(iL.current);
+
+    console.log('Change!'); // !
+
     props.onCardLike(cardData);
   }
+
+  React.useEffect(() => { // * Эффект обновления иконки лайка
+    console.log('Render!'); // !
+    iL.current = false;
+    setLikeIsLoading(iL.current);
+  }, [props]);
 
   return (
     <article className="card" key={props.i}>
@@ -39,9 +54,10 @@ function Card (props) {
       {cardData.isOwn && (<button className="card__delete" type="button" onClick={handleDelete}></button>)}
       <div className="card__label">
         <h2 className="card__name">{cardData.name}</h2>
-        <button className={cardLikeButtonClassName} type="button" onClick={handleLike}>
+        {!isLoading && (<button className={cardLikeButtonClassName} type="button" onClick={handleLike}>
           <p className="card__counter">{cardData.likes.length}</p>
-        </button>
+        </button>)}
+        {isLoading && (<button className="card__loader" disabled />)}
       </div>
     </article>
   );
