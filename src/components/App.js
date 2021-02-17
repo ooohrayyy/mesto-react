@@ -151,7 +151,6 @@ function App () {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
-          // onCardDelete={handleCardDelete}
           onCardDelete={handleDeleteCardClick}
           onCardLike={handleCardLike}
         />
