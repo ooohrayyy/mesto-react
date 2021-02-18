@@ -1,11 +1,12 @@
 import React from 'react';
 
 function Input (props) {
-  const inputRef = React.useRef(); // * Реф инпута
+  const [errorMessage, setErrorMessage] = React.useState(''); // * Стейт-переменная сообщения об ошибке
 
   function handleChange (evt) { // * Обработчик изменения значения инпута
     props.onValueChange(evt);
     props.onInputValidityChange(evt.target.validity.valid);
+    setErrorMessage(evt.target.validationMessage);
   }
 
   // * Возвращаемое значение
@@ -13,7 +14,6 @@ function Input (props) {
   return (
     <>
       <input
-        ref={inputRef}
         className={`popup__input ${props.inputModifier} ${(!props.inputValidityState ? 'popup__input_invalid' : '')}`}
         type={props.inputType}
         name={props.inputName}
@@ -24,11 +24,7 @@ function Input (props) {
         required
         onChange={handleChange}
       />
-      {!props.inputValidityState &&
-      (<span className="popup__input-error">
-        {inputRef.current && inputRef.current.validationMessage}
-      </span>)
-      }
+      {!props.inputValidityState && (<span className="popup__input-error">{errorMessage}</span>)}
     </>
   );
 }
