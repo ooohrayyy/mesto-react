@@ -64,13 +64,11 @@ function EditProfilePopup (props) {
 
   return (
     <PopupWithForm
-      isLoading={props.isLoading}
-      didFailed={props.didFailed}
+      state={props.state}
       formValidityState={formValidity}
       onFormValidityChange={setFormValidity}
       name="profile"
       heading="Редактировать профиль"
-      isOpen={props.isOpen}
       onSubmit={handleSubmit}
       onClose={handleClose}
     >

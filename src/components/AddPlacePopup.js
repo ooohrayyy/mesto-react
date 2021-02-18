@@ -54,13 +54,11 @@ function AddPlacePopup (props) {
 
   return (
     <PopupWithForm
-      isLoading={props.isLoading}
-      didFailed={props.didFailed}
+      state={props.state}
       formValidityState={formValidity}
       onFormValidityChange={setFormValidity}
       name="card"
       heading="Новое место"
-      isOpen={props.isOpen}
       onSubmit={handleSubmit}
       onClose={handleClose}
     >

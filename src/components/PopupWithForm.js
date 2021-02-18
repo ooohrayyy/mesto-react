@@ -1,7 +1,6 @@
 import React from 'react';
 
-import PopupLoader from './PopupLoader.js';
-import PopupError from './PopupError.js';
+import PopupMessage from './PopupMessage.js';
 
 function PopupWithForm (props) {
   // * Хэндлеры
@@ -15,25 +14,24 @@ function PopupWithForm (props) {
   }
 
   return (
-    <div className={`popup popup-${props.name} root__popup ${props.isOpen ? 'popup_opened' : ''}`}>
+    <div className={`popup popup-${props.name} root__popup ${props.state.open ? 'popup_opened' : ''}`}>
         <form className="popup__container" name={props.name} noValidate onChange={handleChange} onSubmit={props.onSubmit}>
-          {(!props.isLoading && !props.didFailed.failed) && (<button className="popup__close" type="button" onClick={props.onClose} />)}
-          {props.didFailed.failed && (<button className="popup__refresh" type="button" onClick={handleRefresh} />)}
+          {(!props.state.loading && !props.state.failed) && (<button className="popup__close" type="button" onClick={props.onClose} />)}
+          {props.state.failed && (<button className="popup__refresh" type="button" onClick={handleRefresh} />)}
           <h2
             className={`popup__heading ${(props.name === 'delete') ? 'popup__heading_delete' : ''}`}
           >
             {props.heading}
           </h2>
-          {(!props.isLoading && !props.didFailed.failed) && props.children}
-          {(!props.isLoading && !props.didFailed.failed) && (<button
+          {(!props.state.loading && !props.state.failed) && props.children}
+          {(!props.state.loading && !props.state.failed) && (<button
             className={`popup__button ${(props.name === 'delete') ? 'popup__button_type_delete' : ''}`}
             type="submit"
             disabled={!props.formValidityState}
           >
             {(props.name === 'delete') ? 'Удалить' : 'Сохранить'}
           </button>)}
-          {props.isLoading && (<PopupLoader name={props.name} />)}
-          {props.didFailed.failed && (<PopupError name={props.name} message={props.didFailed.message} />)}
+          {(props.state.loading || props.state.failed) && (<PopupMessage name={props.name} state={props.state} message={props.message} />)}
         </form>
     </div>
   );

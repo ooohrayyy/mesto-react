@@ -19,55 +19,55 @@ function App () {
 
   // Состояние попапа «Редактировать аватар»
 
-  const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
-  const [isEditAvatarLoading, setEditAvatarLoading] = React.useState(false);
-  const [didEditAvatarFailed, setEditAvatarFailed] = React.useState({
+  const [editAvatarState, setEditAvatarState] = React.useState({
+    open: false,
+    loading: false,
     failed: false,
     message: null
   });
 
   function handleEditAvatarClick () {
-    setAvatarPopup(true);
+    setEditAvatarState({ ...editAvatarState, open: true });
   }
 
   // Состояние попапа «Редактировать профиль»
 
-  const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
-  const [isEditProfileLoading, setEditProfileLoading] = React.useState(false);
-  const [didEditProfileFailed, setEditProfileFailed] = React.useState({
+  const [editProfileState, setEditProfileState] = React.useState({
+    open: false,
+    loading: false,
     failed: false,
     message: null
   });
 
   function handleEditProfileClick () {
-    setProfilePopup(true);
+    setEditProfileState({ ...editProfileState, open: true });
   }
 
   // Состояние попапа «Добавить карточку»
 
-  const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
-  const [isAddPlaceLoading, setAddPlaceLoading] = React.useState(false);
-  const [didAddPlaceFailed, setAddPlaceFailed] = React.useState({
+  const [addPlaceState, setAddPlaceState] = React.useState({
+    open: false,
+    loading: false,
     failed: false,
     message: null
   });
 
   function handleAddPlaceClick () {
-    setAddPlacePopup(true);
+    setAddPlaceState({ ...addPlaceState, open: true });
   }
 
   // Состояние попапа с подтверждением удаления
 
-  const [isConfirmDeletePopupOpen, setConfirmDeletePopup] = React.useState(false);
-  const [isConfirmDeleteLoading, setConfirmDeleteLoading] = React.useState(false);
-  const [didConfirmDeleteFailed, setConfirmDeleteFailed] = React.useState({
+  const [confirmDeleteState, setConfirmDeleteState] = React.useState({
+    open: false,
+    loading: false,
     failed: false,
     message: null
   });
 
   function handleDeleteCardClick () {
     setSelectedCard(this.item);
-    setConfirmDeletePopup(true);
+    setConfirmDeleteState({ ...confirmDeleteState, open: true });
   }
 
   // Состояние попапа с полноразмерной картинкой
@@ -84,10 +84,10 @@ function App () {
   const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' }); // Состояние активного пользователя
 
   function closeAllPopups () { // Закрытие всех попапов и обнуление выбранной карточки
-    setAvatarPopup(false);
-    setProfilePopup(false);
-    setAddPlacePopup(false);
-    setConfirmDeletePopup(false);
+    setEditAvatarState({ ...editAvatarState, open: false });
+    setEditProfileState({ ...editProfileState, open: false });
+    setAddPlaceState({ ...addPlaceState, open: false });
+    setConfirmDeleteState({ ...confirmDeleteState, open: false });
     setImagePopup(false);
 
     setSelectedCard(null);
@@ -114,20 +114,21 @@ function App () {
   // * Функции
 
   function handleUpdateUser (values) { // Обновление информации о пользователе
-    setEditProfileLoading(true);
+    setEditProfileState({ ...editProfileState, loading: true });
 
     api.patchUserInfo(values)
       .then(res => {
         setCurrentUser(res);
         setTimeout(() => {
-          setEditProfileLoading(false);
+          setEditProfileState({ ...editProfileState, open: false, loading: false });
         }, 400);
         closeAllPopups();
       })
       .catch(err => {
         console.log(err);
-        setEditProfileLoading(false);
-        setEditProfileFailed({
+        setEditProfileState({
+          ...editProfileState,
+          loading: false,
           failed: true,
           message: err
         });
@@ -135,20 +136,21 @@ function App () {
   }
 
   function handleUpdateAvatar (link) { // Обновление аватарки пользователя
-    setEditAvatarLoading(true);
+    setEditAvatarState({ ...editAvatarState, loading: true });
 
     api.updateAvatar(link)
       .then(res => {
         setCurrentUser(res);
         setTimeout(() => {
-          setEditAvatarLoading(false);
+          setEditAvatarState({ ...editAvatarState, open: false, loading: false });
         }, 400);
         closeAllPopups();
       })
       .catch(err => {
         console.log(err);
-        setEditAvatarLoading(false);
-        setEditAvatarFailed({
+        setEditAvatarState({
+          ...editAvatarState,
+          loading: false,
           failed: true,
           message: err
         });
@@ -156,20 +158,21 @@ function App () {
   }
 
   function handleAddPlaceSubmit (data) { // Добавление новой карточки
-    setAddPlaceLoading(true);
+    setAddPlaceState({ ...addPlaceState, loading: true });
 
     api.postCard(data)
       .then(res => {
         setCards([res, ...cards]);
         setTimeout(() => {
-          setAddPlaceLoading(false);
+          setAddPlaceState({ ...addPlaceState, open: false, loading: false });
         }, 400);
         closeAllPopups();
       })
       .catch(err => {
         console.log(err);
-        setAddPlaceLoading(false);
-        setAddPlaceFailed({
+        setAddPlaceState({
+          ...addPlaceState,
+          loading: false,
           failed: true,
           message: err
         });
@@ -177,21 +180,22 @@ function App () {
   }
 
   function handleCardDelete (card) { // Обработка удаления карточки
-    setConfirmDeleteLoading(true);
+    setConfirmDeleteState({ ...confirmDeleteState, loading: true });
 
     api.deleteCard(card._id)
       .then(deletedCard => {
         const newCards = cards.filter(deletedCard => deletedCard._id !== card._id);
         setCards(newCards);
         setTimeout(() => {
-          setConfirmDeleteLoading(false);
+          setConfirmDeleteState({ ...confirmDeleteState, open: false, loading: false });
         }, 400);
         closeAllPopups();
       })
       .catch(err => {
         console.log(err);
-        setConfirmDeleteLoading(false);
-        setConfirmDeleteFailed({
+        setConfirmDeleteState({
+          ...confirmDeleteState,
+          loading: false,
           failed: true,
           message: err
         });
@@ -225,34 +229,26 @@ function App () {
         <Footer />
       </div>
       <EditProfilePopup
-        isOpen={isEditProfilePopupOpen}
-        isLoading={isEditProfileLoading}
-        didFailed={didEditProfileFailed}
+        state={editProfileState}
         initialValidityState={true}
         onUpdateUser={handleUpdateUser}
         onClose={closeAllPopups}
       />
       <EditAvatarPopup
-        isOpen={isEditAvatarPopupOpen}
-        isLoading={isEditAvatarLoading}
-        didFailed={didEditAvatarFailed}
+        state={editAvatarState}
         initialValidityState={false}
         onUpdateAvatar={handleUpdateAvatar}
         onClose={closeAllPopups}
       />
       <AddPlacePopup
-        isOpen={isAddPlacePopupOpen}
-        isLoading={isAddPlaceLoading}
-        didFailed={didAddPlaceFailed}
+        state={addPlaceState}
         initialValidityState={false}
         onAddPlaceSubmit={handleAddPlaceSubmit}
         onClose={closeAllPopups}
       />
       <ConfirmDeletePopup
         card={selectedCard}
-        isOpen={isConfirmDeletePopupOpen}
-        isLoading={isConfirmDeleteLoading}
-        didFailed={didConfirmDeleteFailed}
+        state={confirmDeleteState}
         initialValidityState={true}
         onDeleteConfirmation={handleCardDelete}
         onClose={closeAllPopups}
