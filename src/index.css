@@ -37,22 +37,14 @@
 @import url(blocks/popup/__figure/popup__figure.css);
 @import url(blocks/popup/__fullpic/popup__fullpic.css);
 @import url(blocks/popup/__caption/popup__caption.css);
-@import url(blocks/popup/__loader/popup__loader.css);
-@import url(blocks/popup/__error/popup__error.css);
+@import url(blocks/popup/__message/popup__message.css);
 
-/* Подключаем блок popup-loader и его компоненты */
+/* Подключаем блок popup-message и его компоненты */
 
-@import url(blocks/popup-loader/popup-loader.css);
-@import url(blocks/popup-loader/_delete/popup-loader_delete.css);
-@import url(blocks/popup-loader/__img/popup-loader__img.css);
-@import url(blocks/popup-loader/__text/popup-loader__text.css);
-
-/* Подключаем блок popup-error и его компоненты */
-
-@import url(blocks/popup-error/popup-error.css);
-@import url(blocks/popup-error/_delete/popup-error_delete.css);
-@import url(blocks/popup-error/__img/popup-error__img.css);
-@import url(blocks/popup-error/__text/popup-error__text.css);
+@import url(blocks/popup-message/popup-message.css);
+@import url(blocks/popup-message/_delete/popup-message_delete.css);
+@import url(blocks/popup-message/__img/popup-message__img.css);
+@import url(blocks/popup-message/__text/popup-message__text.css);
 
 /* Подключаем блок header и его компоненты */
 

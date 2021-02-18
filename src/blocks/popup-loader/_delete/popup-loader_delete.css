@@ -1,9 +1,0 @@
-.popup-loader_delete {
-  margin-top: 52px;
-}
-
-@media screen and (max-width: 499px) {
-  .popup-loader_delete {
-    margin-top: 17px;
-  }
-}

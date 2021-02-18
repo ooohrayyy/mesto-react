@@ -1,11 +1,11 @@
-.popup-error__img {
+.popup-message__img {
   width: auto;
   height: 104px;
   margin-bottom: 40px;
 }
 
 @media screen and (max-width: 499px) {
-  .popup-error__img {
+  .popup-message__img {
     height: 70px;
     margin-bottom: 20px;
   }
