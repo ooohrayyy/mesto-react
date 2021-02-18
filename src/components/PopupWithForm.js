@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PopupMessage from './PopupMessage.js';
+import PopupListener from './PopupListener.js';
 
 function PopupWithForm (props) {
   // * Хэндлеры
@@ -33,6 +34,7 @@ function PopupWithForm (props) {
           </button>)}
           {(props.state.loading || props.state.failed) && (<PopupMessage name={props.name} state={props.state} message={props.message} />)}
         </form>
+        {props.state.open && (<PopupListener state={props.state} onClose={props.onClose} />)}
     </div>
   );
 }
