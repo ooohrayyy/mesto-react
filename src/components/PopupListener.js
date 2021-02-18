@@ -2,10 +2,6 @@ import React from 'react';
 
 function PopupListener (props) {
   React.useEffect(() => {
-    // function checkState () { // Проверка состояния попапа
-    //   return (props.state) ? ((!props.state.loading && !props.state.failed) ? true : false) : true;
-    // }
-
     function checkState () { // Проверка состояния попапа
       return (!props.state.loading && !props.state.failed) ? true : false;
     }
