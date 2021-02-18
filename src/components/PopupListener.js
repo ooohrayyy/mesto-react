@@ -3,7 +3,11 @@ import React from 'react';
 function PopupListener (props) {
   React.useEffect(() => {
     function handleEscClose (evt) {
-      if (evt.key === 'Escape' && !props.state.loading && !props.state.failed) {
+      if (props.state) {
+        if (evt.key === 'Escape' && !props.state.loading && !props.state.failed) {
+          props.onClose();
+        }
+      } else {
         props.onClose();
       }
     }

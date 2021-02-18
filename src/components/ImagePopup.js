@@ -1,3 +1,5 @@
+import PopupListener from './PopupListener.js';
+
 function ImagePopup (props) {
   return (
     <div className={`popup popup-fullpic root__popup ${props.isOpen ? 'popup_opened' : ''}`}>
@@ -10,6 +12,7 @@ function ImagePopup (props) {
         />
         <figcaption className="popup__caption">{props.card ? props.card.caption : null}</figcaption>
       </figure>
+      {props.isOpen && (<PopupListener onClose={props.onClose} />)}
     </div>
   );
 }
