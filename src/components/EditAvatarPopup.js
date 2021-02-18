@@ -4,26 +4,25 @@ import PopupWithForm from './PopupWithForm.js';
 import Input from './Input.js';
 
 function EditAvatarPopup (props) {
-  // ! Реф инпута с адресом новой аватарки не используется из-за валидации: не нашёл способа совместить.
+  // ! Реф, предусмотренный заданием, не используется из-за валидации: не нашёл способа совместить.
   // ! Зато реф есть в самом Input! :)
 
   // * Стейт-переменные
 
-  // Ссылка на аватарку
-
-  const [link, setLink] = React.useState('');
-
-  function handleLinkChange (evt) {
-    setLink(evt.target.value);
-  }
+  const [link, setLink] = React.useState(''); // Адрес файла аватарки
 
   const [formValidity, setFormValidity] = React.useState(false); // Состояние валидности формы
-
   const [inputValidity, setInputValidity] = React.useState(true); // Состояние валидности инпута
 
   // * Функции
 
-  function handleSubmit (evt) { // Хэндлер сабмита
+  // -- Обработчики формы
+
+  function handleLinkChange (evt) { // Изменение значения инпута
+    setLink(evt.target.value);
+  }
+
+  function handleSubmit (evt) { // Сабмит формы
     evt.preventDefault();
 
     props.onUpdateAvatar(link);
@@ -33,13 +32,15 @@ function EditAvatarPopup (props) {
     setFormValidity(false);
   }
 
-  function handleClose () { // Хэндлер закрытия
+  function handleClose () { // Закрытие формы
     props.onClose();
 
     setLink('');
     setInputValidity(true);
     setFormValidity(false);
   }
+
+  // * Возвращаемое значение
 
   return (
     <PopupWithForm

@@ -3,12 +3,12 @@ import React from 'react';
 function Input (props) {
   const inputRef = React.useRef(); // * Реф инпута
 
-  // * Функции
-
-  function handleChange (evt) { // Хэндлер изменения
+  function handleChange (evt) { // * Обработчик изменения значения инпута
     props.onValueChange(evt);
     props.onInputValidityChange(evt.target.validity.valid);
   }
+
+  // * Возвращаемое значение
 
   return (
     <>

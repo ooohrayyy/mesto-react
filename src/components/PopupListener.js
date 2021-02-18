@@ -1,6 +1,9 @@
 import React from 'react';
 
 function PopupListener (props) {
+  
+  // * Эффект при монтировании компонента
+
   React.useEffect(() => {
     function checkState () { // Проверка состояния попапа
       return (!props.state.loading && !props.state.failed) ? true : false;
@@ -26,6 +29,8 @@ function PopupListener (props) {
       document.removeEventListener('click', handleOverlayClose);
     }
   }, [props]);
+
+  // * Возвращаемое значение
 
   return (null);
 }

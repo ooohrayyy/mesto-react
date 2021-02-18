@@ -8,7 +8,7 @@ function Card (props) {
   const loadingRef = React.useRef(false); // * Реф-переменная загрузки лайка
   const [isLoading, setLikeIsLoading] = React.useState(loadingRef.current); // * Стейт-переменная загрузки лайка
 
-  // * Дополнение данных о карточке
+  // * Обработка данных о карточке
 
   const cardData = props.item;
   cardData.alt = cardData.name;
@@ -22,25 +22,31 @@ function Card (props) {
 
   // * Функции
 
-  function handleClick () { // Клик по карточке (открытие попапа с полноразмерной картинкой)
+  // -- Обработчики карточки
+
+  function handleClick () { // Клик по картинке
     props.onCardClick(cardData);
   }
 
-  function handleDelete () {
-    props.onCardDelete(cardData); // Удаление карточки
+  function handleDelete () { // Удаление карточки
+    props.onCardDelete(cardData);
   }
 
-  function handleLike () { // Клик по лайку
+  function handleLike () { // Снятие и установка лайка
     loadingRef.current = true;
     setLikeIsLoading(loadingRef.current);
 
     props.onCardLike(cardData);
   }
 
-  React.useEffect(() => { // * Эффект обновления иконки лайка
+  // * Эффекты при монтировании компонента
+
+  React.useEffect(() => { // Обновление иконки лайка
     loadingRef.current = false;
     setLikeIsLoading(loadingRef.current);
   }, [props]);
+
+  // * Возвращаемое значение
 
   return (
     <article className="card" key={props.i}>

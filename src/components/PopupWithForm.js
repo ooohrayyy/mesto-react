@@ -4,15 +4,18 @@ import PopupMessage from './PopupMessage.js';
 import PopupListener from './PopupListener.js';
 
 function PopupWithForm (props) {
-  // * Хэндлеры
+  
+  // * Обработчики формы
 
-  function handleChange (evt) { // Хэндлер изменения формы
+  function handleChange (evt) { // Изменение валидности формы
     props.onFormValidityChange(evt.currentTarget.checkValidity());
   }
 
-  function handleRefresh () { // Хэндлер кнопки перезагрузки страницы
+  function handleRefresh () { // Перезагрузка страницы (при ошибке запроса)
     window.location.reload();
   }
+
+  // * Возвращаемое значение
 
   return (
     <div className={`popup popup-${props.name} root__popup ${props.state.open ? 'popup_opened' : ''}`}>

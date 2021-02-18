@@ -4,28 +4,29 @@ import PopupWithForm from './PopupWithForm.js';
 import Input from './Input.js';
 
 function AddPlacePopup (props) {
+
   // * Стейт-переменные
 
-  const [placeName, setPlaceName] = React.useState(''); // Имя места
-
-  function handlePlaceNameChange (evt) {
-    setPlaceName(evt.target.value);
-  }
-
+  const [placeName, setPlaceName] = React.useState(''); // Название места
   const [placePic, setPlacePic] = React.useState(''); // Адрес иллюстрации места
 
-  function handlePlacePicChange (evt) {
-    setPlacePic(evt.target.value);
-  }
-
   const [formValidity, setFormValidity] = React.useState(false); // Состояние валидности формы
-
-  const [nameValidity, setNameValidity] = React.useState(true); // Состояние валидности имени места
-  const [picValidity, setPicValidity] = React.useState(true); // Состояние валидности адреса иллюстрации
+  const [nameValidity, setNameValidity] = React.useState(true); // Состояние валидности инпута с названием
+  const [picValidity, setPicValidity] = React.useState(true); // Состояние валидности инпута с адресом
 
   // * Функции
 
-  function handleSubmit (evt) { // Хэндлер сабмита
+  // -- Обработчики формы
+
+  function handlePlaceNameChange (evt) { // Изменение названия
+    setPlaceName(evt.target.value);
+  }
+
+  function handlePlacePicChange (evt) { // Изменение адреса
+    setPlacePic(evt.target.value);
+  }
+
+  function handleSubmit (evt) { // Сабмит
     evt.preventDefault();
 
     props.onAddPlaceSubmit({
@@ -41,7 +42,7 @@ function AddPlacePopup (props) {
     setFormValidity(false);
   }
 
-  function handleClose () { // Хэндлер закрытия
+  function handleClose () { // Закрытие
     props.onClose();
 
     setPlaceName('');
@@ -51,6 +52,8 @@ function AddPlacePopup (props) {
     setPicValidity(true);
     setFormValidity(false);
   }
+
+  // * Возвращаемое значение
 
   return (
     <PopupWithForm

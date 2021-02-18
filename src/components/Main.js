@@ -9,6 +9,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 function Main (props) {
   const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
 
+  // * Возвращаемое значение
+
   return (
     <main className="main container__main">
       <section className="profile main__profile">

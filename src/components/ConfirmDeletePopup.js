@@ -1,10 +1,15 @@
 import PopupWithForm from './PopupWithForm.js';
 
 function ConfirmDeletePopup (props) {
+  
+  // * Обработчик сабмита формы
+
   function handleSubmit (evt) {
     evt.preventDefault();
     props.onDeleteConfirmation(props.card);
   }
+
+  // * Возвращаемое значение
 
   return (
     <PopupWithForm

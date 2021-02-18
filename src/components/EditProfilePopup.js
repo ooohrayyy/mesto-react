@@ -10,37 +10,26 @@ function EditProfilePopup (props) {
 
   // * Cтейт-переменные
 
-  // Имя пользователя
-
-  const [name, setName] = React.useState('');
-
-  function handleNameChange (evt) {
-    setName(evt.target.value);
-  }
-
-  // Описание пользователя
-
-  const [description, setDescription] = React.useState('');
-
-  function handleDescriptionChange (evt) {
-    setDescription(evt.target.value);
-  }
+  const [name, setName] = React.useState(''); // Имя пользователя
+  const [description, setDescription] = React.useState(''); // Описание пользователя
 
   const [formValidity, setFormValidity] = React.useState(true); // Состояние валидности формы
-
   const [nameValidity, setNameValidity] = React.useState(true); // Состояние валидности инпута с именем
   const [descriptionValidity, setDescriptionValidity] = React.useState(true); // Состояние валидности инпута с описанием
 
-  // * Эффекты при монтировании компонента
-
-  React.useEffect(() => { // Установка имени и описания пользователя по умолчанию
-    setName(userInfo.name);
-    setDescription(userInfo.about);
-  }, [userInfo]);
-
   // * Функции
 
-  function handleSubmit (evt) { // Обработка сабмита формы
+  // -- Обработчики формы
+
+  function handleNameChange (evt) { // Изменение имени пользователя
+    setName(evt.target.value);
+  }
+
+  function handleDescriptionChange (evt) { // Изменение описания пользователя
+    setDescription(evt.target.value);
+  }
+
+  function handleSubmit (evt) { // Сабмит
     evt.preventDefault();
 
     props.onUpdateUser({
@@ -51,7 +40,7 @@ function EditProfilePopup (props) {
     setFormValidity(true);
   }
 
-  function handleClose () { // Обработка закрытия формы
+  function handleClose () { // Закрытие
     props.onClose();
 
     setName(userInfo.name);
@@ -61,6 +50,15 @@ function EditProfilePopup (props) {
     setDescriptionValidity(true);
     setFormValidity(true);
   }
+
+  // * Эффекты при монтировании компонента
+
+  React.useEffect(() => { // Установка имени и описания пользователя по умолчанию
+    setName(userInfo.name);
+    setDescription(userInfo.about);
+  }, [userInfo]);
+
+  // * Возвращаемое значение
 
   return (
     <PopupWithForm
