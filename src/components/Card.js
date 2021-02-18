@@ -34,13 +34,10 @@ function Card (props) {
     loadingRef.current = true;
     setLikeIsLoading(loadingRef.current);
 
-    console.log('Change!'); // !
-
     props.onCardLike(cardData);
   }
 
   React.useEffect(() => { // * Эффект обновления иконки лайка
-    console.log('Render!'); // !
     loadingRef.current = false;
     setLikeIsLoading(loadingRef.current);
   }, [props]);
