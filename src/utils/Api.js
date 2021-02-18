@@ -65,7 +65,7 @@ class Api {
   }
 
   deleteCard (cardId) { // Удаление карточки
-    return fetch(`${this._baseUrl}/carfds/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token
