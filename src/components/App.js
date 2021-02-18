@@ -21,6 +21,10 @@ function App () {
 
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
   const [isEditAvatarLoading, setEditAvatarLoading] = React.useState(false);
+  const [didEditAvatarFailed, setEditAvatarFailed] = React.useState({
+    failed: false,
+    message: null
+  });
 
   function handleEditAvatarClick () {
     setAvatarPopup(true);
@@ -30,6 +34,10 @@ function App () {
 
   const [isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
   const [isEditProfileLoading, setEditProfileLoading] = React.useState(false);
+  const [didEditProfileFailed, setEditProfileFailed] = React.useState({
+    failed: false,
+    message: null
+  });
 
   function handleEditProfileClick () {
     setProfilePopup(true);
@@ -39,6 +47,10 @@ function App () {
 
   const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
   const [isAddPlaceLoading, setAddPlaceLoading] = React.useState(false);
+  const [didAddPlaceFailed, setAddPlaceFailed] = React.useState({
+    failed: false,
+    message: null
+  });
 
   function handleAddPlaceClick () {
     setAddPlacePopup(true);
@@ -48,6 +60,10 @@ function App () {
 
   const [isConfirmDeletePopupOpen, setConfirmDeletePopup] = React.useState(false);
   const [isConfirmDeleteLoading, setConfirmDeleteLoading] = React.useState(false);
+  const [didConfirmDeleteFailed, setConfirmDeleteFailed] = React.useState({
+    failed: false,
+    message: null
+  });
 
   function handleDeleteCardClick () {
     setSelectedCard(this.item);
@@ -108,7 +124,14 @@ function App () {
         }, 400);
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setEditProfileLoading(false);
+        setEditProfileFailed({
+          failed: true,
+          message: err
+        });
+      });
   }
 
   function handleUpdateAvatar (link) { // Обновление аватарки пользователя
@@ -122,7 +145,14 @@ function App () {
         }, 400);
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setEditAvatarLoading(false);
+        setEditAvatarFailed({
+          failed: true,
+          message: err
+        });
+      });
   }
 
   function handleAddPlaceSubmit (data) { // Добавление новой карточки
@@ -136,7 +166,14 @@ function App () {
         }, 400);
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setAddPlaceLoading(false);
+        setAddPlaceFailed({
+          failed: true,
+          message: err
+        });
+      });
   }
 
   function handleCardDelete (card) { // Обработка удаления карточки
@@ -151,7 +188,14 @@ function App () {
         }, 400);
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setConfirmDeleteLoading(false);
+        setConfirmDeleteFailed({
+          failed: true,
+          message: err
+        });
+      });
   }
 
   function handleCardLike (card) { // Обработка лайка карточки
@@ -183,6 +227,7 @@ function App () {
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         isLoading={isEditProfileLoading}
+        didFailed={didEditProfileFailed}
         initialValidityState={true}
         onUpdateUser={handleUpdateUser}
         onClose={closeAllPopups}
@@ -190,6 +235,7 @@ function App () {
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         isLoading={isEditAvatarLoading}
+        didFailed={didEditAvatarFailed}
         initialValidityState={false}
         onUpdateAvatar={handleUpdateAvatar}
         onClose={closeAllPopups}
@@ -197,6 +243,7 @@ function App () {
       <AddPlacePopup
         isOpen={isAddPlacePopupOpen}
         isLoading={isAddPlaceLoading}
+        didFailed={didAddPlaceFailed}
         initialValidityState={false}
         onAddPlaceSubmit={handleAddPlaceSubmit}
         onClose={closeAllPopups}
@@ -205,6 +252,7 @@ function App () {
         card={selectedCard}
         isOpen={isConfirmDeletePopupOpen}
         isLoading={isConfirmDeleteLoading}
+        didFailed={didConfirmDeleteFailed}
         initialValidityState={true}
         onDeleteConfirmation={handleCardDelete}
         onClose={closeAllPopups}
