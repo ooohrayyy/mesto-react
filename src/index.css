@@ -37,6 +37,8 @@
 @import url(blocks/popup/__figure/popup__figure.css);
 @import url(blocks/popup/__fullpic/popup__fullpic.css);
 @import url(blocks/popup/__caption/popup__caption.css);
+@import url(blocks/popup/__loader/popup__loader.css);
+@import url(blocks/popup/__error/popup__error.css);
 
 /* Подключаем блок popup-loader и его компоненты */
 

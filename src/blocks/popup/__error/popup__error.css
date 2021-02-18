@@ -1,0 +1,9 @@
+.popup__error {
+  margin: 0 34px 64px;
+}
+
+@media screen and (max-width: 499px) {
+  .popup__error {
+    margin: 0 17px 32px;
+  }
+}
