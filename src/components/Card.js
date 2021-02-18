@@ -5,9 +5,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 function Card (props) {
   const userInfo = React.useContext(CurrentUserContext); // * Подписка на контекст
 
-  const iL = React.useRef(false); // * Реф-переменная загрузки лайка
-
-  const [isLoading, setLikeIsLoading] = React.useState(iL.current); // * Стейт-переменная загрузки лайка
+  const loadingRef = React.useRef(false); // * Реф-переменная загрузки лайка
+  const [isLoading, setLikeIsLoading] = React.useState(loadingRef.current); // * Стейт-переменная загрузки лайка
 
   // * Дополнение данных о карточке
 
@@ -32,8 +31,8 @@ function Card (props) {
   }
 
   function handleLike () { // Клик по лайку
-    iL.current = true;
-    setLikeIsLoading(iL.current);
+    loadingRef.current = true;
+    setLikeIsLoading(loadingRef.current);
 
     console.log('Change!'); // !
 
@@ -42,8 +41,8 @@ function Card (props) {
 
   React.useEffect(() => { // * Эффект обновления иконки лайка
     console.log('Render!'); // !
-    iL.current = false;
-    setLikeIsLoading(iL.current);
+    loadingRef.current = false;
+    setLikeIsLoading(loadingRef.current);
   }, [props]);
 
   return (
