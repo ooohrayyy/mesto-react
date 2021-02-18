@@ -1,0 +1,29 @@
+.popup__refresh {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../resources/images/svgs/refresh.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: .1s linear;
+}
+
+.popup__refresh:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 499px) {
+  .popup__refresh {
+    top: -25px;
+    right: -20px;
+    width: 20px;
+    height: 20px;
+  }
+}
