@@ -38,12 +38,12 @@
 @import url(blocks/popup/__fullpic/popup__fullpic.css);
 @import url(blocks/popup/__caption/popup__caption.css);
 
-/* Подключаем блок loader и его компоненты */
+/* Подключаем блок popup-loader и его компоненты */
 
-@import url(blocks/loader/loader.css);
-@import url(blocks/loader/_delete/loader_delete.css);
-@import url(blocks/loader/__img/loader__img.css);
-@import url(blocks/loader/__text/loader__text.css);
+@import url(blocks/popup-loader/popup-loader.css);
+@import url(blocks/popup-loader/_delete/popup-loader_delete.css);
+@import url(blocks/popup-loader/__img/popup-loader__img.css);
+@import url(blocks/popup-loader/__text/popup-loader__text.css);
 
 /* Подключаем блок popup-error и его компоненты */
 

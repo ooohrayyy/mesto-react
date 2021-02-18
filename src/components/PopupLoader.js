@@ -1,10 +1,10 @@
-import loader from '../resources/images/svgs/loader.svg';
+import loader from '../resources/images/svgs/popup-loader.svg';
 
 function PopupLoader (props) {
   return (
-    <div className={`loader ${(props.name === 'delete') ? 'loader_delete' : ''}`}>
-      <img className="loader__img" src={loader} alt="Индикатор загрузки" />
-      <h3 className="loader__text">Загрузка...</h3>
+    <div className={`popup-loader ${(props.name === 'delete') ? 'popup-loader_delete' : ''}`}>
+      <img className="popup-loader__img" src={loader} alt="Индикатор загрузки" />
+      <h3 className="popup-loader__text">Загрузка...</h3>
     </div>
   );
 }
