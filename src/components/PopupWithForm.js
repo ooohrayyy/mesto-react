@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loader from './Loader.js';
+import PopupLoader from './PopupLoader.js';
 import PopupError from './PopupError.js';
 
 function PopupWithForm (props) {
@@ -32,7 +32,7 @@ function PopupWithForm (props) {
           >
             {(props.name === 'delete') ? 'Удалить' : 'Сохранить'}
           </button>)}
-          {props.isLoading && (<Loader name={props.name} />)}
+          {props.isLoading && (<PopupLoader name={props.name} />)}
           {props.didFailed.failed && (<PopupError name={props.name} message={props.didFailed.message} />)}
         </form>
     </div>
