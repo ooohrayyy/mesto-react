@@ -45,6 +45,13 @@
 @import url(blocks/loader/__img/loader__img.css);
 @import url(blocks/loader/__text/loader__text.css);
 
+/* Подключаем блок popup-error и его компоненты */
+
+@import url(blocks/popup-error/popup-error.css);
+@import url(blocks/popup-error/_delete/popup-error_delete.css);
+@import url(blocks/popup-error/__img/popup-error__img.css);
+@import url(blocks/popup-error/__text/popup-error__text.css);
+
 /* Подключаем блок header и его компоненты */
 
 @import url(blocks/header/header.css);

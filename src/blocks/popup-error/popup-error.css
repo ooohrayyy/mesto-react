@@ -1,0 +1,16 @@
+.popup-error {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  width: 358px;
+  height: 156px;
+  margin: 0 34px 64px;
+}
+
+@media screen and (max-width: 499px) {
+  .popup-error {
+    width: 210px;
+    height: 120px;
+    margin: 0 17px 32px;
+  }
+}
