@@ -72,11 +72,16 @@ function App () {
 
   // Состояние попапа с полноразмерной картинкой
 
-  const [isImagePopupOpen, setImagePopup] = React.useState(false);
+  const [imagePopupState, setImagePopupState] = React.useState({
+    open: false,
+    loading: false,
+    failed: false,
+    message: null
+  });
 
   function handleCardClick () {
     setSelectedCard(this.item);
-    setImagePopup(true);
+    setImagePopupState({ ...imagePopupState, open: true });
   }
 
   const [selectedCard, setSelectedCard] = React.useState({}); // Состояние выбранной карточки
@@ -88,7 +93,7 @@ function App () {
     setEditProfileState({ ...editProfileState, open: false });
     setAddPlaceState({ ...addPlaceState, open: false });
     setConfirmDeleteState({ ...confirmDeleteState, open: false });
-    setImagePopup(false);
+    setImagePopupState({ ...imagePopupState, open: false });
 
     setSelectedCard(null);
   }
@@ -253,7 +258,7 @@ function App () {
         onDeleteConfirmation={handleCardDelete}
         onClose={closeAllPopups}
       />
-      <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} state={imagePopupState} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
 }
