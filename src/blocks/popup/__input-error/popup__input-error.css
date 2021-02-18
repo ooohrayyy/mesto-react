@@ -1,4 +1,4 @@
-.popup__error {
+.popup__input-error {
   display: block;
   width: 358px;
   margin: 0 auto 20px;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 499px) {
-  .popup__error {
+  .popup__input-error {
     width: 200px;
   }
 }
