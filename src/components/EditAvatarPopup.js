@@ -4,9 +4,7 @@ import PopupWithForm from './PopupWithForm.js';
 import Input from './Input.js';
 
 function EditAvatarPopup (props) {
-  // ! Реф, предусмотренный заданием, не используется из-за валидации: не нашёл способа совместить.
-  // ! Зато реф есть в самом Input! :)
-
+  
   // * Стейт-переменные
 
   const [link, setLink] = React.useState(''); // Адрес файла аватарки
