@@ -12,10 +12,6 @@ import ImagePopup from "./ImagePopup.js";
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
-// ! Второй привет команде код-ревью! Спасибо за отзыв и замечания
-// ! Неожиданно кастомный хук оказался самым трудным испытанием за всё время учёбы
-// ! Но, кажется, удалось!
-
 function App () {
 
   // * Стейт-переменные
