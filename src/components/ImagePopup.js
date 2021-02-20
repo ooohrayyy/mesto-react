@@ -1,6 +1,8 @@
-import PopupListener from './PopupListener.js';
+import usePopupListeners from '../utils/usePopupListeners.js';
 
 function ImagePopup (props) {
+  usePopupListeners(props); // * Хук слушателей для попапа
+
   return (
     <div className={`popup popup-fullpic root__popup ${props.state.open ? 'popup_opened' : ''}`}>
       <figure className="popup__figure">
@@ -12,7 +14,6 @@ function ImagePopup (props) {
         />
         <figcaption className="popup__caption">{props.card ? props.card.caption : null}</figcaption>
       </figure>
-      {props.state.open && (<PopupListener state={props.state} onClose={props.onClose} />)}
     </div>
   );
 }

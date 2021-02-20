@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PopupMessage from './PopupMessage.js';
-import PopupListener from './PopupListener.js';
+import usePopupListeners from '../utils/usePopupListeners.js';
 
 function PopupWithForm (props) {
   
@@ -14,6 +14,8 @@ function PopupWithForm (props) {
   function handleRefresh () { // Перезагрузка страницы (при ошибке запроса)
     window.location.reload();
   }
+
+  usePopupListeners(props); // * Хук слушателей для попапа
 
   // * Возвращаемое значение
 
@@ -37,7 +39,6 @@ function PopupWithForm (props) {
           </button>)}
           {(props.state.loading || props.state.failed) && (<PopupMessage name={props.name} state={props.state} message={props.message} />)}
         </form>
-        {props.state.open && (<PopupListener state={props.state} onClose={props.onClose} />)}
     </div>
   );
 }
