@@ -1,12 +1,12 @@
 import React from 'react';
 
 function usePopupListeners (props) {
-  const { open, loading, failed } = props.state;
-  const { onClose } = props;
+  const {
+    state: { open, loading, failed },
+    onClose
+  } = props;
 
-  const checkState = React.useCallback(() => {
-    return (!loading && !failed) ? true : false;
-  }, [loading, failed]);
+  const checkState = React.useCallback(() => ((!loading && !failed) ? true : false), [loading, failed]);
 
   const handleEscClose = React.useCallback((evt) => {
     if ((evt.key === 'Escape') && checkState()) {
