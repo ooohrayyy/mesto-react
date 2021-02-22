@@ -6,7 +6,7 @@ function usePopupListeners (props) {
     onClose
   } = props;
 
-  const popupIsReady = (!loading && !failed) ? true : false;
+  const popupIsReady = (!loading && !failed);
 
   const handleEscClose = React.useCallback((evt) => {
     if ((evt.key === 'Escape') && popupIsReady) {
