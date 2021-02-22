@@ -6,19 +6,19 @@ function usePopupListeners (props) {
     onClose
   } = props;
 
-  const checkState = React.useCallback(() => ((!loading && !failed) ? true : false), [loading, failed]);
+  const popupIsReady = (!loading && !failed) ? true : false;
 
   const handleEscClose = React.useCallback((evt) => {
-    if ((evt.key === 'Escape') && checkState()) {
+    if ((evt.key === 'Escape') && popupIsReady) {
       onClose();
     }
-  }, [checkState, onClose]);
+  }, [popupIsReady, onClose]);
 
   const handleOverlayClose = React.useCallback((evt) => {
-    if (evt.target.classList.contains('popup') && checkState()) {
+    if (evt.target.classList.contains('popup') && popupIsReady) {
       onClose();
     }
-  }, [checkState, onClose]);
+  }, [popupIsReady, onClose]);
 
   const addEventListeners = React.useCallback(() => {
     document.addEventListener('keydown', handleEscClose);
